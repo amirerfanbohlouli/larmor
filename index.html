@@ -223,6 +223,18 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-
 }
 .modal-body ol.refs { direction: ltr; text-align: left; font-size: 0.88em; line-height: 1.8; color: var(--text-muted); margin: 10px 25px 10px; }
 .modal-body ol.refs li { margin-bottom: 8px; }
+.feedback-fab { position: fixed; bottom: 25px; left: 25px; width: 52px; height: 52px; border-radius: 50%; z-index: 2100; background: linear-gradient(135deg, var(--purple), var(--magenta)); font-size: 1.4em; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(var(--magenta-rgb), 0.45); transition: all 0.3s ease; }
+html[dir="ltr"] .feedback-fab { left: auto; right: 25px; }
+.feedback-fab:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(var(--magenta-rgb), 0.6); }
+.feedback-overlay { z-index: 2200; }
+.fb-field { display: block; margin-bottom: 16px; }
+.fb-field span { display: block; margin-bottom: 6px; color: var(--text-muted); font-size: 0.9em; }
+.fb-field input, .fb-field textarea { width: 100%; padding: 11px 14px; background: rgba(var(--white-rgb), 0.06); color: var(--text); border: 1px solid rgba(var(--purple-rgb), 0.4); border-radius: 10px; font: inherit; }
+.fb-field textarea { min-height: 130px; resize: vertical; }
+.fb-field input:focus, .fb-field textarea:focus { outline: 2px solid var(--cyan); outline-offset: 1px; }
+.fb-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.fb-status { min-height: 1.6em; margin: 4px 0 12px; font-size: 0.95em; }
+.fb-status.ok { color: #00ff88; } .fb-status.err { color: #ff6b6b; }
 </style>
 </head>
 <body>
@@ -398,6 +410,27 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-
 
 </main>
 
+<button type="button" class="feedback-fab" id="feedbackBtn" aria-haspopup="dialog" aria-label="ارسال نظر" title="ارسال نظر">💬</button>
+
+<!-- Feedback Modal -->
+<div class="modal-overlay feedback-overlay" id="feedbackModal" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle" inert>
+  <div class="modal-content" style="max-width: 520px;">
+    <div class="modal-header">
+      <button type="button" class="modal-close" id="feedbackClose" aria-label="بستن">✕</button>
+      <h2 class="modal-title" id="feedbackTitle" data-i18n="feedback.title">ارسال نظر</h2>
+      <div class="modal-date" data-i18n="feedback.intro"></div>
+    </div>
+    <form class="modal-body" id="feedbackForm" novalidate>
+      <label class="fb-field"><span data-i18n="feedback.name">نام</span><input type="text" id="fbName" maxlength="80" autocomplete="name" required></label>
+      <label class="fb-field"><span data-i18n="feedback.email">ایمیل</span><input type="email" id="fbEmail" maxlength="120" autocomplete="email" dir="ltr" required></label>
+      <label class="fb-field"><span data-i18n="feedback.message">نظر شما</span><textarea id="fbMessage" maxlength="2000" required></textarea></label>
+      <div class="fb-hp" aria-hidden="true"><input type="text" id="fbHoney" tabindex="-1" autocomplete="off"></div>
+      <div class="fb-status" id="fbStatus" role="status" aria-live="polite"></div>
+      <button type="submit" class="sim-btn" id="fbSend" data-i18n="feedback.send">ارسال نظر</button>
+    </form>
+  </div>
+</div>
+
 <!-- Article Modal -->
 <div class="modal-overlay" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="articleModalTitle" inert>
   <div class="modal-content">
@@ -488,6 +521,7 @@ const translations = {
     },
     about: { title: 'درباره من', p1: 'سلام! من <strong>امیرعرفان</strong> هستم، دانشجوی کارشناسی ارشد مهندسی هسته‌ای با گرایش گداخت هسته‌ای در دانشگاه صنعتی امیرکبیر (پلی‌تکنیک تهران).', p2: 'علاقه‌مندی‌های تحقیقاتی من شامل فیزیک پلاسما، دستگاه‌های توکامک و استلراتور، ناپایداری‌های MHD، پیش‌بینی Disruption و کنترل بلادرنگ در رآکتورهای گداخت است.', p3: 'هدف من مشارکت در توسعه انرژی گداخت به عنوان یک منبع انرژی پاک و پایدار برای آینده بشریت است. گداخت هسته‌ای همان فرآیندی است که خورشید و ستارگان از آن انرژی می‌گیرند، و ما در تلاشیم این فرآیند را روی زمین شبیه‌سازی کنیم.', eduTitle: 'تحصیلات:', edu1: 'کارشناسی ارشد مهندسی هسته‌ای - گداخت | دانشگاه امیرکبیر (۱۴۰۲ - اکنون)', edu2: 'کارشناسی فیزیک مهندسی | دانشگاه تبریز (۱۳۸ - ۱۴۰)' },
     contact: { title: 'ارتباط با من', intro: 'همیشه آماده همکاری‌های علمی و پژوهشی هستم. از طریق راه‌های زیر می‌توانید با من در ارتباط باشید:' },
+    feedback: { title: 'ارسال نظر', intro: 'نظر، پیشنهاد یا سؤال خود را بنویسید؛ پیام شما همراه با نام و ایمیلتان برای من ایمیل می‌شود.', name: 'نام', email: 'ایمیل', message: 'نظر شما', send: 'ارسال نظر', sending: 'در حال ارسال…', ok: 'ممنون! نظر شما ارسال شد.', fail: 'ارسال انجام نشد. لطفاً کمی بعد دوباره تلاش کنید یا از صفحه «ارتباط با من» ایمیل بزنید.', invalid: 'لطفاً نام، یک ایمیل معتبر و متن نظر را وارد کنید.', open: 'ارسال نظر', close: 'بستن' },
     counter: { today: 'بازدید امروز', total: 'کل بازدیدها' },
     footer: { tagline: 'پژوهش فیزیک پلاسما و گداخت' }, modalClose: 'بستن'
   },
@@ -545,6 +579,7 @@ const translations = {
     },
     about: { title: 'About Me', p1: 'Hi! I\'m <strong>AmirErfan</strong>, an MSc student in Nuclear Engineering with a focus on Nuclear Fusion at Amirkabir University of Technology (Tehran Polytechnic).', p2: 'My research interests include plasma physics, tokamak and stellarator devices, MHD instabilities, disruption prediction, and real-time control in fusion reactors.', p3: 'My goal is to contribute to the development of fusion energy as a clean and sustainable power source for the future of humanity. Nuclear fusion is the same process that powers the Sun and the stars, and we are working to replicate this process on Earth.', eduTitle: 'Education:', edu1: 'MSc in Nuclear Engineering – Fusion | Amirkabir University (2023 – Present)', edu2: 'BSc in Engineering Physics | University of Tabriz (2019 – 2023)' },
     contact: { title: 'Contact Me', intro: 'I\'m always open to scientific and research collaborations. You can reach me through the following channels:' },
+    feedback: { title: 'Send Feedback', intro: 'Write your comment, suggestion or question. It will be emailed to me together with your name and email.', name: 'Name', email: 'Email', message: 'Your comment', send: 'Send', sending: 'Sending…', ok: 'Thank you! Your comment was sent.', fail: 'Sending failed. Please try again later or email me from the Contact page.', invalid: 'Please enter your name, a valid email and a comment.', open: 'Send feedback', close: 'Close' },
     counter: { today: 'Visits today', total: 'Total visits' },
     footer: { tagline: 'Plasma Physics & Fusion Research' }, modalClose: 'Close'
   }
@@ -700,6 +735,7 @@ function setLanguage(lang) {
   
   renderArticles();
   renderTutorials();
+  renderFeedbackAttrs();
   renderSimCard();
   renderVisitCounters();
 }
@@ -1174,6 +1210,74 @@ async function initVisitCounters() {
   visitCounts.total = total;
   renderVisitCounters();
 }
+
+// ===== FEEDBACK (emailed via FormSubmit) =====
+const FEEDBACK_ENDPOINT = 'https://formsubmit.co/ajax/amirerfanbohlouli@gmail.com';
+const feedbackModal = document.getElementById('feedbackModal');
+const feedbackBtn = document.getElementById('feedbackBtn');
+const feedbackClose = document.getElementById('feedbackClose');
+const feedbackForm = document.getElementById('feedbackForm');
+const fbStatus = document.getElementById('fbStatus');
+const fbSend = document.getElementById('fbSend');
+let fbLastFocus = null, fbLastSent = 0;
+
+function renderFeedbackAttrs() {
+  const t = translations[currentLang].feedback;
+  feedbackBtn.setAttribute('aria-label', t.open);
+  feedbackBtn.title = t.open;
+  feedbackClose.setAttribute('aria-label', t.close);
+}
+function setFbStatus(text, cls) { fbStatus.textContent = text; fbStatus.className = 'fb-status' + (cls ? ' ' + cls : ''); }
+function openFeedback() {
+  fbLastFocus = document.activeElement;
+  setFbStatus('');
+  feedbackModal.classList.add('active');
+  feedbackModal.removeAttribute('inert');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('fbName').focus(), 100);
+}
+function closeFeedback() {
+  feedbackModal.classList.remove('active');
+  feedbackModal.setAttribute('inert', '');
+  if (!articleModal.classList.contains('active') && !simModal.classList.contains('active')) document.body.style.overflow = '';
+  if (fbLastFocus) fbLastFocus.focus();
+}
+feedbackBtn.addEventListener('click', openFeedback);
+feedbackClose.addEventListener('click', closeFeedback);
+feedbackModal.addEventListener('click', (e) => { if (e.target === feedbackModal) closeFeedback(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && feedbackModal.classList.contains('active')) { e.stopImmediatePropagation(); closeFeedback(); } }, true);
+
+feedbackForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const t = translations[currentLang].feedback;
+  if (document.getElementById('fbHoney').value) return;
+  const name = document.getElementById('fbName').value.trim();
+  const email = document.getElementById('fbEmail').value.trim();
+  const message = document.getElementById('fbMessage').value.trim();
+  if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || message.length < 3) { setFbStatus(t.invalid, 'err'); return; }
+  if (Date.now() - fbLastSent < 30000) { setFbStatus(t.fail, 'err'); return; }
+  const pageId = (document.querySelector('.page.active') || {}).id || '';
+  const openItem = articleModal.classList.contains('active') ? document.getElementById('articleModalTitle').textContent
+                 : simModal.classList.contains('active') ? document.getElementById('simModalTitle').textContent : '';
+  fbSend.disabled = true;
+  setFbStatus(t.sending);
+  try {
+    const res = await fetch(FEEDBACK_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, email, message, page: pageId.replace('page-', '') + (openItem ? ' > ' + openItem : ''), language: currentLang, _subject: 'Larmor feedback from ' + name, _template: 'table', _captcha: 'false' })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.success === 'false' || data.success === false) throw new Error('send failed');
+    fbLastSent = Date.now();
+    feedbackForm.reset();
+    setFbStatus(t.ok, 'ok');
+  } catch (err) {
+    setFbStatus(t.fail, 'err');
+  } finally {
+    fbSend.disabled = false;
+  }
+});
 
 // ===== INIT =====
 document.getElementById('year').textContent = new Date().getFullYear();
