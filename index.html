@@ -221,6 +221,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-
   .sim-controls { flex-direction: column; }
   .sim-results { grid-template-columns: 1fr; }
 }
+.modal-body ol.refs { direction: ltr; text-align: left; font-size: 0.88em; line-height: 1.8; color: var(--text-muted); margin: 10px 25px 10px; }
+.modal-body ol.refs li { margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -342,6 +344,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-
         </ul>
       </div>
 
+      <div class="edu-category">
+        <h3><span>🧪</span> <span data-i18n="education.tutorials.title">مطالب آموزشی</span></h3>
+        <div class="articles-grid" id="tutorialGrid"></div>
+      </div>
+
       <!-- Simulation Card -->
       <div class="edu-category">
         <h3><span>💻</span> <span data-i18n="education.simulation.title">شبیه‌سازی</span></h3>
@@ -431,13 +438,13 @@ const translations = {
     title: 'Larmor | فیزیک پلاسما و گداخت', tagline: 'پلاسما. فیزیک. گداخت', skipLink: 'رفتن به محتوای اصلی',
     menu: { home: 'صفحه اصلی', larmor: 'لارمور یعنی چی؟', articles: 'مقالات', education: 'آموزش', about: 'درباره من', contact: 'ارتباط با من' },
     welcome: { title: '👋 خوش آمدید!', p2: 'برای استفاده از سایت و مشاهده بخش‌های مختلف، لطفاً روی <strong>منوی همبرگری (☰)</strong> در گوشه بالای صفحه کلیک کنید.' },
-    larmor: { title: 'لارمور چیست؟', p1: '<strong>فرکانس لارمور</strong> (Larmor Frequency) یکی از مفاهیم بنیادی در فیزیک پلاسما و فیزیک ذرات باردار است. این فرکانس به سرعت چرخش ذرات باردار (الکترون‌ها و یون‌ها) در اطراف خطوط میدان مغناطیسی اشاره دارد.', where: 'که در آن:', var1: 'فرکانس زاویه‌ای لارمور (رادیان بر ثانیه)', var2: 'بار الکتریکی ذره (کولن)', var3: 'شدت میدان مغناطیسی (تسلا)', var4: 'جرم ذره (کیلوگرم)', p2: '<strong>شعاع لارمور</strong> (Larmor Radius یا Gyroradius) شعاع دایره‌ای است که ذره باردار در میدان مغناطیسی طی می‌کند:', p3: 'این مفاهیم در طراحی توکامک‌ها و استلراتورها برای محصورسازی پلاسما بسیار حیاتی هستند. در رآکتورهای گداخت مانند ITER، میدان‌های مغناطیسی قوی برای نگه داشتن پلاسمای داغ (بیش از ۱۰ میلیون درجه) استفاده می‌شوند و فرکانس لارمور تعیین می‌کند که ذرات چقدر سریع دور خطوط میدان می‌چرخند.' },
+    larmor: { title: 'لارمور چیست؟', p1: '<strong>فرکانس لارمور</strong> (Larmor Frequency) یکی از مفاهیم بنیادی در فیزیک پلاسما و فیزیک ذرات باردار است. این فرکانس به سرعت چرخش ذرات باردار (الکترون‌ها و یون‌ها) در اطراف خطوط میدان مغناطیسی اشاره دارد.', where: 'که در آن:', var1: 'فرکانس زاویه‌ای لارمور (رادیان بر ثانیه)', var2: 'بار الکتریکی ذره (کولن)', var3: 'شدت میدان مغناطیسی (تسلا)', var4: 'جرم ذره (کیلوگرم)', p2: '<strong>شعاع لارمور</strong> (Larmor Radius یا Gyroradius) شعاع دایره‌ای است که ذره باردار در میدان مغناطیسی طی می‌کند:', p3: 'این مفاهیم در طراحی توکامک‌ها و استلراتورها برای محصورسازی پلاسما بسیار حیاتی هستند. در رآکتورهای گداخت مانند ITER، میدان‌های مغناطیسی قوی برای نگه داشتن پلاسمای داغ (بیش از ۱۰۰ میلیون درجه) استفاده می‌شوند و فرکانس لارمور تعیین می‌کند که ذرات چقدر سریع دور خطوط میدان می‌چرخند.' },
     articles: { title: 'مقالات', intro: 'یادداشت‌ها و مقالات علمی من درباره فیزیک پلاسما و انرژی گداخت. برای مطالعه کامل، روی هر مقاله کلیک کنید:', readMore: 'مطالعه کامل ←', hasFile: '📎 فایل پیوست', download: '📥 دانلود PDF مقاله', dateLabel: '📅 تاریخ:' },
     education: { 
       title: 'آموزش', intro: 'منابع و ابزارهای پیشنهادی برای یادگیری فیزیک پلاسما و مهندسی گداخت:', 
       books: { title: 'کتاب‌های مرجع', b1: { desc: 'نوشته Francis F. Chen - کتاب کلاسیک و استاندارد برای شروع یادگیری فیزیک پلاسما.' }, b2: { desc: 'نوشته Nicholas A. Krall و Albert W. Trivelpiece - مرجع کامل‌تر برای مباحث پیشرفته.' }, b3: { desc: 'نوشته R. J. Goldston و P. H. Rutherford - مرجع تخصصی برای MHD و توکامک‌ها.' } }, 
       courses: { title: 'دوره‌های آنلاین', c1: { desc: 'دوره رایگان MIT با ویدیوهای آموزشی کامل.' }, c2: { desc: 'سخنرانی‌های آژانس بین‌المللی انرژی اتمی درباره انرژی گداخت.' }, c3: { desc: 'دوره جامع انرژی هسته‌ای با بخش‌های تخصصی درباره گداخت.' } }, 
-      software: { title: 'نرم‌افزارهای تخصصی', s1: { desc: 'زبان اصلی برای تحلیل داده‌های پلاسما و شبیه‌سازی عددی.' }, s2: { desc: 'شبیه‌سازی چندفیزیکی برای میدان‌های الکترومغناطیسی و حرارتی.' }, s3: { desc: 'کد متن‌باز برای شبیه‌سازی پلاسمای لبه‌ای در توکامک‌ها.' }, s4: { desc: 'ابزار قدرتمند برای پردازش سیگنال و تحلیل داده‌های آزمایشگاهی.' } },
+      tutorials: { title: 'مطالب آموزشی', label: 'آموزش' }, software: { title: 'نرم‌افزارهای تخصصی', s1: { desc: 'زبان اصلی برای تحلیل داده‌های پلاسما و شبیه‌سازی عددی.' }, s2: { desc: 'شبیه‌سازی چندفیزیکی برای میدان‌های الکترومغناطیسی و حرارتی.' }, s3: { desc: 'کد متن‌باز برای شبیه‌سازی پلاسمای لبه‌ای در توکامک‌ها.' }, s4: { desc: 'ابزار قدرتمند برای پردازش سیگنال و تحلیل داده‌های آزمایشگاهی.' } },
       simulation: {
         title: 'شبیه‌سازی',
         langmuir: {
@@ -494,7 +501,7 @@ const translations = {
       title: 'Education', intro: 'Recommended resources and tools for learning plasma physics and fusion engineering:', 
       books: { title: 'Reference Books', b1: { desc: 'By Francis F. Chen - The classic and standard textbook for starting plasma physics.' }, b2: { desc: 'By Nicholas A. Krall and Albert W. Trivelpiece - A more comprehensive reference for advanced topics.' }, b3: { desc: 'By R. J. Goldston and P. H. Rutherford - A specialized reference for MHD and tokamaks.' } }, 
       courses: { title: 'Online Courses', c1: { desc: 'Free MIT course with complete video lectures.' }, c2: { desc: 'Lectures by the International Atomic Energy Agency on fusion energy.' }, c3: { desc: 'Comprehensive nuclear energy course with specialized sections on fusion.' } }, 
-      software: { title: 'Specialized Software', s1: { desc: 'The main programming language for plasma data analysis and numerical simulation.' }, s2: { desc: 'Multiphysics simulation software for modeling electromagnetic and thermal fields.' }, s3: { desc: 'Open-source code for simulating edge plasma in tokamaks.' }, s4: { desc: 'Powerful tool for signal processing and experimental data analysis.' } },
+      tutorials: { title: 'Tutorials', label: 'Tutorial' }, software: { title: 'Specialized Software', s1: { desc: 'The main programming language for plasma data analysis and numerical simulation.' }, s2: { desc: 'Multiphysics simulation software for modeling electromagnetic and thermal fields.' }, s3: { desc: 'Open-source code for simulating edge plasma in tokamaks.' }, s4: { desc: 'Powerful tool for signal processing and experimental data analysis.' } },
       simulation: {
         title: 'Simulation',
         langmuir: {
@@ -549,7 +556,7 @@ const articlesData = [
     id: 'langmuir-probe-chen',
     fa: {
       title: 'درسنامه‌ای بر تشخیص با پروب لانگمیر',
-      date: '۱۴۳',
+      date: '۱۴۰۳',
       excerpt: 'پروب لانگمیر یکی از ساده‌ترین و در عین حال قدرتمندترین ابزارها برای اندازه‌گیری ویژگی‌های پلاسماست. این درسنامه توسط پروفسور فرانسیس اف. چن نوشته شده است.',
       content: `<p><strong>منبع و نویسنده:</strong> مجموعه درسنامه از گروه مهندسی برق، دانشگاه کالیفرنیا، لس‌آنجلس (UCLA) توسط پروفسور فرانسیس اف. چن (Francis F. Chen)، یکی از برجسته‌ترین چهره‌های جهانی در زمینه فیزیک پلاسما.</p><h3>چکیده‌ای به زبان ساده</h3><p>پروب لانگمیر یکی از ساده‌ترین و در عین حال قدرتمندترین ابزارها برای اندازه‌گیری ویژگی‌های پلاسماست. این درسنامه به طور کامل به اصول طراحی، عملکرد و تحلیل داده‌های پروب لانگمیر می‌پردازد.</p><h3>نوآوری و نکات برجسته</h3><ul><li><strong>پوشش جامع نظریه‌های جمع‌آوری یون:</strong> از نظریه‌ی کلاسیک OML گرفته تا نظریه‌های پیشرفته‌تر ABR و BRL.</li><li><strong>تمرکز ویژه بر پلاسماهای فرکانس‌رادیویی (RF):</strong> روش‌های جبران RF و طراحی مدارهای مناسب.</li><li><strong>روش‌های عملی و تحلیلی:</strong> الگوریتم‌های عددی و روش‌های برازش منحنی برای استخراج پارامترهایی مانند دمای الکترون و چگالی.</li></ul><h3>اهمیت در حوزه گداخت</h3><p>در پروژه‌های گداخت هسته‌ای مانند توکامک‌ها، اندازه‌گیری دقیق پارامترهای پلاسما برای کنترل و بهینه‌سازی حیاتی است. این درسنامه به پژوهشگران کمک می‌کند تا داده‌های پروب خود را با دقت بالاتری تحلیل کنند.</p>`,
       file: { name: 'دانلود PDF مقاله', url: 'https://raw.githubusercontent.com/amirerfanx/larmor/main/Langmuir%20Probe%20Diagnostics%20-%20F.F.Chen.pdf' }
@@ -563,6 +570,89 @@ const articlesData = [
     }
   }
 ];
+
+articlesData.push(
+{
+  id: 'lawson-criterion',
+  fa: {
+    title: 'معیار لاوسون و حاصل‌ضرب سه‌گانه گداخت',
+    date: '۹ مهر ۱۴۰۵',
+    excerpt: 'چه شرایطی باعث می‌شود یک پلاسمای D–T بیشتر از انرژی تلف‌شده‌اش انرژی تولید کند؟ معیار لاوسون پاسخ این پرسش است.',
+    content: `<p>در سال ۱۹۵۷ جان لاوسون نشان داد که برای یک رآکتور گداخت، سه کمیت باید هم‌زمان بزرگ باشند: چگالی پلاسما (n)، دمای یون‌ها (T) و زمان محصورسازی انرژی (τ<sub>E</sub>).</p><h3>استخراج ساده</h3><p>در حالت اشتعال، توان گرمایی ذرات آلفا (<code>P<sub>α</sub> = (n²/4)⟨σv⟩E<sub>α</sub></code>) باید حداقل برابر توان اتلافی (<code>P<sub>loss</sub> = 3nT/τ<sub>E</sub></code>) باشد. از برابری این دو داریم:</p><div class="formula">n·T·τ_E ≥ 12T² / (⟨σv⟩·E_α)</div><p>برای سوخت دوتریوم–تریتیوم در دمای حدود ۱۰ تا ۲۰ کیلوالکترون‌ولت، سمت راست تقریباً ثابت است و حاصل‌ضرب سه‌گانه باید از مرتبه‌ی <strong>۳×۱۰<sup>۲۱</sup> keV·s·m<sup>−۳</sup></strong> یا بیشتر باشد.</p><h3>چرا مهم است؟</h3><p>این معیار مسیرهای مختلف را مقایسه‌پذیر می‌کند: توکامک‌ها با چگالی کم و زمان محصورسازی طولانی، و گداخت لختی با چگالی بسیار زیاد و زمان بسیار کوتاه. پیشرفت دستگاه‌های مختلف معمولاً روی همین حاصل‌ضرب سنجیده می‌شود.</p><h3>مراجع</h3><ol class="refs"><li>J. D. Lawson, "Some Criteria for a Power Producing Thermonuclear Reactor," <em>Proc. Phys. Soc. B</em> 70, 6 (1957).</li><li>J. Wesson, <em>Tokamaks</em>, 4th ed., Oxford University Press (2011).</li><li>J. P. Freidberg, <em>Plasma Physics and Fusion Energy</em>, Cambridge University Press (2007).</li><li>S. E. Wurzel and S. C. Hsu, "Progress toward fusion energy breakeven and gain as measured against the Lawson criterion," <em>Phys. Plasmas</em> 29, 062103 (2022).</li></ol>`
+  },
+  en: {
+    title: 'The Lawson Criterion and the Fusion Triple Product',
+    date: 'October 1, 2026',
+    excerpt: 'What conditions let a D–T plasma produce more energy than it loses? The Lawson criterion answers this question.',
+    content: `<p>In 1957 John Lawson showed that a fusion reactor needs three quantities to be large at the same time: plasma density (n), ion temperature (T) and energy confinement time (τ<sub>E</sub>).</p><h3>A simple derivation</h3><p>At ignition, the heating power of the alpha particles (<code>P<sub>α</sub> = (n²/4)⟨σv⟩E<sub>α</sub></code>) must at least equal the power loss (<code>P<sub>loss</sub> = 3nT/τ<sub>E</sub></code>). Equating the two gives:</p><div class="formula">n·T·τ_E ≥ 12T² / (⟨σv⟩·E_α)</div><p>For deuterium–tritium fuel at roughly 10–20 keV the right-hand side is nearly constant, so the triple product must be of order <strong>3×10<sup>21</sup> keV·s·m<sup>−3</sup></strong> or higher.</p><h3>Why it matters</h3><p>The criterion makes very different approaches comparable: tokamaks use low density and long confinement, while inertial fusion uses extreme density and a very short confinement time. Progress of different devices is usually tracked with this product.</p><h3>References</h3><ol class="refs"><li>J. D. Lawson, "Some Criteria for a Power Producing Thermonuclear Reactor," <em>Proc. Phys. Soc. B</em> 70, 6 (1957).</li><li>J. Wesson, <em>Tokamaks</em>, 4th ed., Oxford University Press (2011).</li><li>J. P. Freidberg, <em>Plasma Physics and Fusion Energy</em>, Cambridge University Press (2007).</li><li>S. E. Wurzel and S. C. Hsu, "Progress toward fusion energy breakeven and gain as measured against the Lawson criterion," <em>Phys. Plasmas</em> 29, 062103 (2022).</li></ol>`
+  }
+},
+{
+  id: 'tokamak-disruptions',
+  fa: {
+    title: 'دیسراپشن در توکامک‌ها: چه می‌شود و چگونه پیش‌بینی می‌شود؟',
+    date: '۱۰ آبان ۱۴۰۵',
+    excerpt: 'دیسراپشن، از دست رفتن ناگهانی محصورسازی پلاسماست و یکی از جدی‌ترین چالش‌های رآکتورهای بزرگ مثل ITER به شمار می‌آید.',
+    content: `<p>دیسراپشن (Disruption) فروپاشی ناگهانی پلاسمای توکامک در چند میلی‌ثانیه است. در دستگاه‌های بزرگ، انرژی گرمایی و مغناطیسی پلاسما می‌تواند به دیواره آسیب بزند.</p><h3>مراحل اصلی</h3><ul><li><strong>خنک‌شدن گرمایی (Thermal Quench):</strong> افت سریع دمای پلاسما.</li><li><strong>خنک‌شدن جریان (Current Quench):</strong> افت جریان پلاسما و ایجاد نیروهای الکترومغناطیسی بزرگ روی سازه (جریان‌های هیلو).</li><li><strong>الکترون‌های فراگریز (Runaway Electrons):</strong> دسته‌ای از الکترون‌های پرانرژی که ممکن است شکل بگیرند.</li></ul><h3>علل رایج</h3><p>عبور از حد چگالی، حد بتا، مودهای قفل‌شده (locked modes) و جابجایی عمودی پلاسما از علل شناخته‌شده‌اند.</p><h3>پیش‌بینی و کاهش اثر</h3><p>رویکردهای داده‌محور برای پیش‌بینی زودهنگام دیسراپشن، به‌همراه روش‌هایی مثل تزریق گاز یا قرص‌های خردشده برای کاهش اثر آن، و نیز کنترل مغناطیسی بلادرنگ مبتنی بر یادگیری تقویتی، از زمینه‌های فعال پژوهشی هستند.</p><h3>مراجع</h3><ol class="refs"><li>T. C. Hender et al., "MHD stability, operational limits and disruptions," <em>Nucl. Fusion</em> 47, S128 (2007).</li><li>A. H. Boozer, "Theory of tokamak disruptions," <em>Phys. Plasmas</em> 19, 058101 (2012).</li><li>J. Kates-Harbeck, A. Svyatkovskiy and W. Tang, "Predicting disruptive instabilities in controlled fusion plasmas through deep learning," <em>Nature</em> 568, 526–531 (2019).</li><li>J. Degrave et al., "Magnetic control of tokamak plasmas through deep reinforcement learning," <em>Nature</em> 602, 414–419 (2022).</li></ol>`
+  },
+  en: {
+    title: 'Tokamak Disruptions: What Happens and How We Predict Them',
+    date: 'November 1, 2026',
+    excerpt: 'A disruption is a sudden loss of plasma confinement, and one of the most serious challenges for large devices such as ITER.',
+    content: `<p>A disruption is the sudden collapse of a tokamak plasma within milliseconds. In large devices the thermal and magnetic energy of the plasma can damage the wall.</p><h3>Main stages</h3><ul><li><strong>Thermal quench:</strong> a rapid loss of plasma temperature.</li><li><strong>Current quench:</strong> the plasma current decays, producing large electromagnetic forces on the structure (halo currents).</li><li><strong>Runaway electrons:</strong> a beam of highly energetic electrons may form.</li></ul><h3>Common causes</h3><p>Exceeding the density limit or the beta limit, locked modes and vertical displacement are well-known triggers.</p><h3>Prediction and mitigation</h3><p>Data-driven early prediction, mitigation by massive gas or shattered pellet injection, and real-time magnetic control based on reinforcement learning are all active research areas.</p><h3>References</h3><ol class="refs"><li>T. C. Hender et al., "MHD stability, operational limits and disruptions," <em>Nucl. Fusion</em> 47, S128 (2007).</li><li>A. H. Boozer, "Theory of tokamak disruptions," <em>Phys. Plasmas</em> 19, 058101 (2012).</li><li>J. Kates-Harbeck, A. Svyatkovskiy and W. Tang, "Predicting disruptive instabilities in controlled fusion plasmas through deep learning," <em>Nature</em> 568, 526–531 (2019).</li><li>J. Degrave et al., "Magnetic control of tokamak plasmas through deep reinforcement learning," <em>Nature</em> 602, 414–419 (2022).</li></ol>`
+  }
+}
+);
+
+const tutorialsData = [
+{
+  id: 'debye-plasma-frequency',
+  fa: {
+    title: 'طول دبای و فرکانس پلاسما',
+    date: 'مبتدی',
+    excerpt: 'دو مقیاس بنیادی که تعیین می‌کنند یک گاز یونیزه واقعاً «پلاسما» هست یا نه.',
+    content: `<p>یک گاز یونیزه وقتی پلاسماست که شبه‌خنثی باشد و رفتار جمعی نشان دهد. دو کمیت این را مشخص می‌کنند.</p><h3>طول دبای</h3><p>فاصله‌ای که در آن بار آزمون توسط ابر باردار اطرافش پوشیده (استتار) می‌شود:</p><div class="formula">λ_D = √(ε₀ k T_e / n e²) ≈ 7430·√(T_eV / n) m</div><h3>فرکانس پلاسمای الکترونی</h3><div class="formula">ω_pe = √(n e² / ε₀ m_e) ≈ 56.4·√n rad/s</div><p>در هر دو رابطه‌ی تقریبی، n بر حسب m<sup>−۳</sup> و T<sub>e</sub> بر حسب الکترون‌ولت است.</p><h3>مثال عددی</h3><p>برای n = ۱۰<sup>۱۸</sup> m<sup>−۳</sup> و T<sub>e</sub> = ۱۰ eV: λ<sub>D</sub> ≈ ۲۳ µm و f<sub>pe</sub> ≈ ۹ GHz. اندازه‌ی دستگاه خیلی بزرگ‌تر از λ<sub>D</sub> است، پس شرط شبه‌خنثایی برقرار است.</p><h3>مراجع</h3><ol class="refs"><li>F. F. Chen, <em>Introduction to Plasma Physics and Controlled Fusion</em>, 3rd ed., Springer (2016), Ch. 1.</li><li>R. J. Goldston and P. H. Rutherford, <em>Introduction to Plasma Physics</em>, IOP Publishing (1995).</li><li>A. S. Richardson, <em>NRL Plasma Formulary</em>, Naval Research Laboratory, NRL/PU/6790-19-640 (2019).</li></ol>`
+  },
+  en: {
+    title: 'Debye Length and Plasma Frequency',
+    date: 'Beginner',
+    excerpt: 'Two fundamental scales that decide whether an ionized gas is really a "plasma".',
+    content: `<p>An ionized gas is a plasma when it is quasi-neutral and shows collective behavior. Two quantities quantify this.</p><h3>Debye length</h3><p>The distance over which a test charge is screened by the surrounding cloud of charges:</p><div class="formula">λ_D = √(ε₀ k T_e / n e²) ≈ 7430·√(T_eV / n) m</div><h3>Electron plasma frequency</h3><div class="formula">ω_pe = √(n e² / ε₀ m_e) ≈ 56.4·√n rad/s</div><p>In both approximate forms n is in m<sup>−3</sup> and T<sub>e</sub> in electron-volts.</p><h3>Worked example</h3><p>For n = 10<sup>18</sup> m<sup>−3</sup> and T<sub>e</sub> = 10 eV: λ<sub>D</sub> ≈ 23 µm and f<sub>pe</sub> ≈ 9 GHz. The device is far larger than λ<sub>D</sub>, so quasi-neutrality holds.</p><h3>References</h3><ol class="refs"><li>F. F. Chen, <em>Introduction to Plasma Physics and Controlled Fusion</em>, 3rd ed., Springer (2016), Ch. 1.</li><li>R. J. Goldston and P. H. Rutherford, <em>Introduction to Plasma Physics</em>, IOP Publishing (1995).</li><li>A. S. Richardson, <em>NRL Plasma Formulary</em>, Naval Research Laboratory, NRL/PU/6790-19-640 (2019).</li></ol>`
+  }
+},
+{
+  id: 'langmuir-iv-analysis',
+  fa: {
+    title: 'تحلیل منحنی I–V پروب لانگمیر گام‌به‌گام',
+    date: 'متوسط',
+    excerpt: 'از منحنی جریان–ولتاژ خام تا دمای الکترون و چگالی پلاسما.',
+    content: `<p>منحنی I–V سه ناحیه دارد: اشباع یونی (ولتاژ بسیار منفی)، ناحیه‌ی الکترونی کاهنده (میان پتانسیل شناور و پتانسیل پلاسما) و اشباع الکترونی (نزدیک و بالاتر از پتانسیل پلاسما V<sub>p</sub>).</p><h3>گام ۱: دمای الکترون</h3><p>در ناحیه‌ی کاهنده، جریان الکترونی نمایی است:</p><div class="formula">I_e = I_es · exp[e(V − V_p)/kT_e]</div><p>پس از کم‌کردن جریان یونی، شیب نمودار ln I<sub>e</sub> بر حسب V برابر ۱/T<sub>e</sub> (با T<sub>e</sub> بر حسب eV) است.</p><h3>گام ۲: چگالی</h3><p>از جریان اشباع یونی و رابطه‌ی بوهم:</p><div class="formula">I_is ≈ 0.61 · n e A · √(kT_e / m_i)</div><p>که A سطح پروب است و n از آن به دست می‌آید.</p><h3>گام ۳: پتانسیل‌ها</h3><p>پتانسیل شناور V<sub>f</sub> جایی است که جریان خالص صفر می‌شود و V<sub>p</sub> را می‌توان از زانوی منحنی یا ماکزیمم مشتق اول تعیین کرد. V<sub>p</sub> − V<sub>f</sub> مضربی از T<sub>e</sub> است و به جرم یون بستگی دارد.</p><h3>نکته‌ی عملی</h3><p>خازن سرگردان کابل‌ها جریان C·dV/dt اضافه می‌کند؛ برای همین در شبیه‌ساز همین صفحه، زمان مکث روی هر پله را چند برابر τ=RC می‌گیریم.</p><h3>مراجع</h3><ol class="refs"><li>F. F. Chen, "Lecture Notes on Langmuir Probe Diagnostics," IEEE-ICOPS Mini-Course on Plasma Diagnostics, Jeju, Korea (2003).</li><li>R. L. Merlino, "Understanding Langmuir probe current-voltage characteristics," <em>Am. J. Phys.</em> 75, 1078 (2007).</li><li>I. H. Hutchinson, <em>Principles of Plasma Diagnostics</em>, 2nd ed., Cambridge University Press (2002).</li><li>H. M. Mott-Smith and I. Langmuir, "The Theory of Collectors in Gaseous Discharges," <em>Phys. Rev.</em> 28, 727 (1926).</li></ol>`
+  },
+  en: {
+    title: 'Langmuir Probe I–V Analysis, Step by Step',
+    date: 'Intermediate',
+    excerpt: 'From a raw current–voltage curve to electron temperature and plasma density.',
+    content: `<p>The I–V curve has three regions: ion saturation (very negative bias), the electron retardation region (between floating and plasma potential) and electron saturation (near and above the plasma potential V<sub>p</sub>).</p><h3>Step 1: Electron temperature</h3><p>In the retardation region the electron current is exponential:</p><div class="formula">I_e = I_es · exp[e(V − V_p)/kT_e]</div><p>After subtracting the ion current, the slope of ln I<sub>e</sub> versus V equals 1/T<sub>e</sub> (T<sub>e</sub> in eV).</p><h3>Step 2: Density</h3><p>From the ion saturation current and the Bohm relation:</p><div class="formula">I_is ≈ 0.61 · n e A · √(kT_e / m_i)</div><p>where A is the probe area; n follows directly.</p><h3>Step 3: Potentials</h3><p>The floating potential V<sub>f</sub> is where the net current is zero, and V<sub>p</sub> can be found from the knee of the curve or the maximum of the first derivative. V<sub>p</sub> − V<sub>f</sub> is a multiple of T<sub>e</sub> that depends on the ion mass.</p><h3>Practical note</h3><p>Stray cable capacitance adds a C·dV/dt current. This is why the simulator on this page waits several multiples of τ=RC on each voltage step.</p><h3>References</h3><ol class="refs"><li>F. F. Chen, "Lecture Notes on Langmuir Probe Diagnostics," IEEE-ICOPS Mini-Course on Plasma Diagnostics, Jeju, Korea (2003).</li><li>R. L. Merlino, "Understanding Langmuir probe current-voltage characteristics," <em>Am. J. Phys.</em> 75, 1078 (2007).</li><li>I. H. Hutchinson, <em>Principles of Plasma Diagnostics</em>, 2nd ed., Cambridge University Press (2002).</li><li>H. M. Mott-Smith and I. Langmuir, "The Theory of Collectors in Gaseous Discharges," <em>Phys. Rev.</em> 28, 727 (1926).</li></ol>`
+  }
+}
+];
+
+function renderTutorials() {
+  const grid = document.getElementById('tutorialGrid');
+  if (!grid) return;
+  const t = translations[currentLang];
+  grid.innerHTML = '';
+  tutorialsData.forEach((item, index) => {
+    const data = item[currentLang];
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'article-card';
+    card.setAttribute('aria-label', data.title);
+    card.onclick = () => openArticle(item.id, tutorialsData);
+    card.innerHTML = `<span class="article-number">${t.education.tutorials.label} ${index + 1}</span><h3>${data.title}</h3><div class="article-date">🎯 ${data.date}</div><p class="article-excerpt">${data.excerpt}</p><span class="read-more">${t.articles.readMore}</span>`;
+    grid.appendChild(card);
+  });
+}
 
 // ===== STATE & DOM =====
 const VALID_PAGES = ['home', 'larmor', 'articles', 'education', 'about', 'contact'];
@@ -609,6 +699,7 @@ function setLanguage(lang) {
   simModalClose.setAttribute('aria-label', translations[lang].modalClose);
   
   renderArticles();
+  renderTutorials();
   renderSimCard();
   renderVisitCounters();
 }
@@ -662,8 +753,8 @@ function renderSimCard() {
 }
 
 // ===== ARTICLE MODAL =====
-function openArticle(articleId) {
-  const article = articlesData.find(a => a.id === articleId);
+function openArticle(articleId, source = articlesData) {
+  const article = source.find(a => a.id === articleId);
   if (!article) return;
   const data = article[currentLang];
   const t = translations[currentLang].articles;
