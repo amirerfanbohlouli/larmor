@@ -99,6 +99,13 @@ html[dir="ltr"] .menu-item:hover { transform: translateX(10px); }
 .article-card .read-more, .sim-card .read-more { color: var(--magenta); font-weight: bold; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 0.95em; }
 .article-card .has-attachment { display: inline-flex; align-items: center; gap: 6px; background: rgba(var(--cyan-rgb), 0.1); color: var(--cyan); padding: 4px 12px; border-radius: 12px; font-size: 0.8em; margin-top: 10px; border: 1px solid rgba(var(--cyan-rgb), 0.3); }
 
+/* === Download button beside articles === */
+.article-footer { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.article-footer .read-more { margin-top: 0; }
+.card-download { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; background: linear-gradient(135deg, var(--purple), var(--magenta)); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.88em; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(var(--magenta-rgb), 0.3); }
+.card-download:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(var(--magenta-rgb), 0.5); }
+.card-download:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
 .edu-category { margin-bottom: 35px; }
 .edu-category h3 { color: var(--cyan); font-size: 1.5em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid rgba(var(--purple-rgb), 0.3); display: flex; align-items: center; gap: 12px; }
 .resource-list { list-style: none; padding: 0; }
@@ -869,8 +876,10 @@ function renderArticles() {
       <h3>${data.title}</h3>
       <div class="article-date">📅 ${data.date}</div>
       <p class="article-excerpt">${data.excerpt}</p>
-      <span class="read-more">${t.readMore}</span>
-      ${data.file ? `<span class="has-attachment">${t.hasFile}</span>` : ''}
+      <div class="article-footer">
+        <span class="read-more">${t.readMore}</span>
+        ${data.file ? `<a href="${data.file.url}" download class="card-download" onclick="event.stopPropagation()">${t.download}</a>` : ''}
+      </div>
     `;
     grid.appendChild(card);
   });
