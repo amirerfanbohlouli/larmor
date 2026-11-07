@@ -99,13 +99,6 @@ html[dir="ltr"] .menu-item:hover { transform: translateX(10px); }
 .article-card .read-more, .sim-card .read-more { color: var(--magenta); font-weight: bold; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 0.95em; }
 .article-card .has-attachment { display: inline-flex; align-items: center; gap: 6px; background: rgba(var(--cyan-rgb), 0.1); color: var(--cyan); padding: 4px 12px; border-radius: 12px; font-size: 0.8em; margin-top: 10px; border: 1px solid rgba(var(--cyan-rgb), 0.3); }
 
-/* === Download button beside articles === */
-.article-footer { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
-.article-footer .read-more { margin-top: 0; }
-.card-download { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; background: linear-gradient(135deg, var(--purple), var(--magenta)); color: #fff; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.88em; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(var(--magenta-rgb), 0.3); }
-.card-download:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(var(--magenta-rgb), 0.5); }
-.card-download:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
-
 .edu-category { margin-bottom: 35px; }
 .edu-category h3 { color: var(--cyan); font-size: 1.5em; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid rgba(var(--purple-rgb), 0.3); display: flex; align-items: center; gap: 12px; }
 .resource-list { list-style: none; padding: 0; }
@@ -265,6 +258,21 @@ html[data-theme="light"] .menu-panel, html[data-theme="light"] .modal-content, h
 .fb-msg { line-height: 2; margin-bottom: 14px; }
 .copy-email { display: inline-flex; align-items: center; gap: 8px; margin: 2px 4px; padding: 3px 12px; border-radius: 10px; font-family: 'Courier New', monospace; font-size: 0.95em; color: var(--cyan); background: rgba(var(--cyan-rgb), 0.1); border: 1px dashed rgba(var(--cyan-rgb), 0.5); cursor: pointer; transition: all 0.3s ease; }
 .copy-email:hover { background: rgba(var(--cyan-rgb), 0.2); border-style: solid; }
+.larmor-fig { margin: 28px 0; }
+.larmor-svg { display: block; width: 100%; height: auto; background: rgba(var(--white-rgb), 0.03); border: 1px solid rgba(var(--purple-rgb), 0.3); border-radius: 16px; }
+.larmor-fig figcaption { color: var(--text-muted); font-size: 0.9em; line-height: 1.9; margin-top: 10px; }
+.larmor-svg .sv-st { fill: none; stroke-width: 2; stroke-linecap: round; }
+.larmor-svg .sv-ion { stroke: var(--magenta); }
+.larmor-svg .sv-el { stroke: var(--cyan); }
+.larmor-svg .sv-mut { stroke: var(--text-muted); }
+.larmor-svg .sv-fm { fill: var(--magenta); }
+.larmor-svg .sv-fc { fill: var(--cyan); }
+.larmor-svg .sv-ft { fill: var(--text-muted); }
+.larmor-svg .sv-t { fill: var(--text); font: italic 16px Georgia, 'Times New Roman', serif; }
+.larmor-svg .sv-coil { stroke: var(--text-muted); stroke-width: 1.4; opacity: 0.7; }
+.larmor-svg .sv-body { fill: var(--magenta); fill-opacity: 0.12; }
+.larmor-svg .sv-hole { fill: var(--bg); }
+.larmor-svg .sv-flux { stroke-width: 1.6; opacity: 0.85; }
 </style>
 </head>
 <body>
@@ -352,11 +360,71 @@ html[data-theme="light"] .menu-panel, html[data-theme="light"] .modal-content, h
         <li><strong>B</strong>: <span data-i18n="larmor.var3">شدت میدان مغناطیسی (تسلا)</span></li>
         <li><strong>m</strong>: <span data-i18n="larmor.var4">جرم ذره (کیلوگرم)</span></li>
       </ul>
-      <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800" alt="Plasma Physics" class="plasma-image" loading="lazy" decoding="async">
+<figure class="larmor-fig">
+<svg viewBox="0 0 700 280" class="larmor-svg" role="img" aria-labelledby="fig1cap" xmlns="http://www.w3.org/2000/svg">
+<circle cx="30" cy="30" r="7" class="sv-st sv-mut" fill="none"/><circle cx="30" cy="30" r="2" class="sv-ft"/>
+<circle cx="30" cy="250" r="7" class="sv-st sv-mut" fill="none"/><circle cx="30" cy="250" r="2" class="sv-ft"/>
+<circle cx="390" cy="30" r="7" class="sv-st sv-mut" fill="none"/><circle cx="390" cy="30" r="2" class="sv-ft"/>
+<circle cx="390" cy="250" r="7" class="sv-st sv-mut" fill="none"/><circle cx="390" cy="250" r="2" class="sv-ft"/>
+<circle cx="210" cy="262" r="7" class="sv-st sv-mut" fill="none"/><circle cx="210" cy="262" r="2" class="sv-ft"/>
+<circle cx="28" cy="140" r="7" class="sv-st sv-mut" fill="none"/><circle cx="28" cy="140" r="2" class="sv-ft"/>
+<circle cx="250" cy="20" r="7" class="sv-st sv-mut" fill="none"/><circle cx="250" cy="20" r="2" class="sv-ft"/>
+<text x="52" y="34" class="sv-t">B</text>
+<circle cx="130" cy="140" r="72" class="sv-st sv-ion" fill="none"/>
+<polygon class="sv-fm" points="192.2,102.1 178,94.5 187.2,86.8"/>
+<line x1="130" y1="140" x2="67.6" y2="176" class="sv-st sv-ion" stroke-dasharray="4 4"/>
+<text x="78" y="154" class="sv-t">r<tspan dy="4" font-size="12">L</tspan></text>
+<circle cx="130" cy="140" r="3" class="sv-fm"/>
+<text x="104" y="234" class="sv-t sv-ionT">ion (+)</text>
+<circle cx="320" cy="140" r="24" class="sv-st sv-el" fill="none"/>
+<polygon class="sv-fc" points="294.5,133 299.6,117.7 308.8,125.4"/>
+<circle cx="320" cy="140" r="3" class="sv-fc"/>
+<text x="280" y="186" class="sv-t sv-elT">electron (−)</text>
+<text x="201.4" y="104" class="sv-t">v</text>
+<line x1="430" y1="140" x2="672" y2="140" class="sv-st sv-mut" stroke-dasharray="6 5"/>
+<polygon class="sv-ft" points="684,140 668,146 668,134"/>
+<text x="676" y="130" class="sv-t">B</text>
+<polyline points="449,140 449.6,144.1 450.1,148.1 450.5,152.1 450.9,156.1 451.3,159.9 451.6,163.6 451.9,167.2 452.1,170.6 452.2,173.8 452.3,176.8 452.4,179.5 452.5,182.1 452.5,184.3 452.4,186.3 452.4,188 452.3,189.5 452.3,190.6 452.2,191.4 452.1,191.8 451.9,192 451.8,191.8 451.7,191.4 451.6,190.6 451.6,189.5 451.5,188 451.4,186.3 451.4,184.3 451.4,182.1 451.5,179.5 451.6,176.8 451.7,173.8 451.8,170.6 452,167.2 452.3,163.6 452.6,159.9 452.9,156.1 453.3,152.1 453.8,148.1 454.3,144.1 454.9,140 455.5,135.9 456.2,131.9 456.9,127.9 457.7,123.9 458.6,120.1 459.5,116.4 460.4,112.8 461.4,109.4 462.4,106.2 463.5,103.2 464.6,100.5 465.8,97.9 467,95.7 468.2,93.7 469.4,92 470.7,90.5 471.9,89.4 473.2,88.6 474.5,88.2 475.8,88 477.1,88.2 478.4,88.6 479.7,89.4 481,90.5 482.3,92 483.5,93.7 484.7,95.7 485.9,97.9 487.1,100.5 488.2,103.2 489.2,106.2 490.3,109.4 491.3,112.8 492.2,116.4 493.1,120.1 493.9,123.9 494.7,127.9 495.5,131.9 496.2,135.9 496.8,140 497.3,144.1 497.9,148.1 498.3,152.1 498.7,156.1 499.1,159.9 499.4,163.6 499.6,167.2 499.8,170.6 500,173.8 500.1,176.8 500.2,179.5 500.2,182.1 500.2,184.3 500.2,186.3 500.2,188 500.1,189.5 500,190.6 499.9,191.4 499.8,191.8 499.7,192 499.6,191.8 499.5,191.4 499.4,190.6 499.3,189.5 499.3,188 499.2,186.3 499.2,184.3 499.2,182.1 499.3,179.5 499.3,176.8 499.4,173.8 499.6,170.6 499.8,167.2 500.1,163.6 500.4,159.9 500.7,156.1 501.1,152.1 501.6,148.1 502.1,144.1 502.7,140 503.3,135.9 504,131.9 504.7,127.9 505.5,123.9 506.3,120.1 507.2,116.4 508.2,112.8 509.2,109.4 510.2,106.2 511.3,103.2 512.4,100.5 513.5,97.9 514.7,95.7 515.9,93.7 517.2,92 518.4,90.5 519.7,89.4 521,88.6 522.3,88.2 523.6,88 524.9,88.2 526.2,88.6 527.5,89.4 528.8,90.5 530,92 531.3,93.7 532.5,95.7 533.7,97.9 534.8,100.5 535.9,103.2 537,106.2 538.1,109.4 539,112.8 540,116.4 540.9,120.1 541.7,123.9 542.5,127.9 543.3,131.9 543.9,135.9 544.6,140 545.1,144.1 545.6,148.1 546.1,152.1 546.5,156.1 546.9,159.9 547.2,163.6 547.4,167.2 547.6,170.6 547.8,173.8 547.9,176.8 548,179.5 548,182.1 548,184.3 548,186.3 548,188 547.9,189.5 547.8,190.6 547.7,191.4 547.6,191.8 547.5,192 547.4,191.8 547.3,191.4 547.2,190.6 547.1,189.5 547,188 547,186.3 547,184.3 547,182.1 547,179.5 547.1,176.8 547.2,173.8 547.4,170.6 547.6,167.2 547.8,163.6 548.1,159.9 548.5,156.1 548.9,152.1 549.4,148.1 549.9,144.1 550.4,140 551.1,135.9 551.7,131.9 552.5,127.9 553.3,123.9 554.1,120.1 555,116.4 556,112.8 556.9,109.4 558,106.2 559.1,103.2 560.2,100.5 561.3,97.9 562.5,95.7 563.7,93.7 565,92 566.2,90.5 567.5,89.4 568.8,88.6 570.1,88.2 571.4,88 572.7,88.2 574,88.6 575.3,89.4 576.6,90.5 577.8,92 579.1,93.7 580.3,95.7 581.5,97.9 582.6,100.5 583.7,103.2 584.8,106.2 585.8,109.4 586.8,112.8 587.8,116.4 588.7,120.1 589.5,123.9 590.3,127.9 591,131.9 591.7,135.9 592.3,140 592.9,144.1 593.4,148.1 593.9,152.1 594.3,156.1 594.6,159.9 594.9,163.6 595.2,167.2 595.4,170.6 595.6,173.8 595.7,176.8 595.7,179.5 595.8,182.1 595.8,184.3 595.8,186.3 595.7,188 595.7,189.5 595.6,190.6 595.5,191.4 595.4,191.8 595.3,192 595.2,191.8 595.1,191.4 595,190.6 594.9,189.5 594.8,188 594.8,186.3 594.8,184.3 594.8,182.1 594.8,179.5 594.9,176.8 595,173.8 595.2,170.6 595.4,167.2 595.6,163.6 595.9,159.9 596.3,156.1 596.7,152.1 597.1,148.1 597.7,144.1 598.2,140 598.8,135.9 599.5,131.9 600.3,127.9 601.1,123.9 601.9,120.1 602.8,116.4 603.7,112.8 604.7,109.4 605.8,106.2 606.8,103.2 607.9,100.5 609.1,97.9 610.3,95.7 611.5,93.7 612.7,92 614,90.5 615.3,89.4 616.6,88.6 617.9,88.2 619.2,88 620.5,88.2 621.8,88.6 623.1,89.4 624.3,90.5 625.6,92 626.8,93.7 628,95.7 629.2,97.9 630.4,100.5 631.5,103.2 632.6,106.2 633.6,109.4 634.6,112.8 635.5,116.4 636.4,120.1 637.3,123.9 638.1,127.9 638.8,131.9 639.5,135.9 640.1,140 640.7,144.1 641.2,148.1 641.7,152.1 642.1,156.1 642.4,159.9 642.7,163.6 643,167.2 643.2,170.6 643.3,173.8 643.4,176.8 643.5,179.5 643.6,182.1 643.6,184.3 643.6,186.3 643.5,188 643.4,189.5 643.4,190.6 643.3,191.4 643.2,191.8 643.1,192 642.9,191.8 642.8,191.4 642.7,190.6 642.7,189.5 642.6,188 642.6,186.3 642.5,184.3 642.5,182.1 642.6,179.5 642.7,176.8 642.8,173.8 642.9,170.6 643.1,167.2 643.4,163.6 643.7,159.9 644.1,156.1 644.5,152.1 644.9,148.1 645.4,144.1 646,140" class="sv-st sv-ion" fill="none"/>
+<line x1="643.1" y1="140" x2="643.1" y2="192" class="sv-st sv-mut"/>
+<text x="651.1" y="176" class="sv-t">r<tspan dy="4" font-size="12">L</tspan></text>
+</svg>
+<figcaption id="fig1cap" data-i18n="larmor.fig1"></figcaption>
+</figure>
       <p data-i18n="larmor.p2"><strong>شعاع لارمور</strong> (Larmor Radius یا Gyroradius) شعاع دایره‌ای است که ذره باردار در میدان مغناطیسی طی می‌کند:</p>
       <div class="formula">r<sub>L</sub> = mv / qB</div>
       <p data-i18n="larmor.p3">این مفاهیم در طراحی توکامک‌ها و استلراتورها برای محصورسازی پلاسما بسیار حیاتی هستند. در رآکتورهای گداخت مانند ITER، میدان‌های مغناطیسی قوی برای نگه داشتن پلاسمای داغ (بیش از ۱۰۰ میلیون درجه) استفاده می‌شوند و فرکانس لارمور تعیین می‌کند که ذرات چقدر سریع دور خطوط میدان می‌چرخند.</p>
-      <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=800" alt="Magnetic Confinement" class="plasma-image" loading="lazy" decoding="async">
+<figure class="larmor-fig">
+<svg viewBox="0 0 700 280" class="larmor-svg" role="img" aria-labelledby="fig2cap" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="175" cy="140" rx="136" ry="68" class="sv-st sv-mut sv-body"/>
+<ellipse cx="175" cy="144" rx="64" ry="30" class="sv-st sv-mut sv-hole"/>
+<ellipse cx="275" cy="140" rx="6" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="261.6" cy="165" rx="9.5" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="225" cy="183.3" rx="12.1" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="175" cy="190" rx="13" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="125" cy="183.3" rx="12.1" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="88.4" cy="165" rx="9.5" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="75" cy="140" rx="6" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="88.4" cy="115" rx="9.5" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="125" cy="96.7" rx="12.1" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="175" cy="90" rx="13" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="225" cy="96.7" rx="12.1" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="261.6" cy="115" rx="9.5" ry="40" class="sv-st sv-coil" fill="none"/>
+<ellipse cx="175" cy="142" rx="100" ry="50" class="sv-st sv-el" fill="none" stroke-dasharray="7 5"/>
+<polygon class="sv-fc" points="236.5,182 222.8,192.2 219.5,180.6"/>
+<text x="319" y="136" class="sv-t">B<tspan dy="4" font-size="12">t</tspan></text>
+<ellipse cx="530" cy="140" rx="96" ry="122" class="sv-st sv-mut" fill="none" stroke-dasharray="7 5"/>
+<ellipse cx="530" cy="140" rx="82" ry="104" class="sv-st sv-ion sv-flux" fill="none"/>
+<ellipse cx="532.6" cy="140" rx="64" ry="81.1" class="sv-st sv-ion sv-flux" fill="none"/>
+<ellipse cx="535.3" cy="140" rx="45.9" ry="58.2" class="sv-st sv-ion sv-flux" fill="none"/>
+<ellipse cx="537.9" cy="140" rx="27.9" ry="35.4" class="sv-st sv-ion sv-flux" fill="none"/>
+<ellipse cx="540.3" cy="140" rx="11.5" ry="14.6" class="sv-st sv-ion sv-flux" fill="none"/>
+<circle cx="585" cy="93.5" r="9" class="sv-st sv-el" fill="none"/>
+<polygon class="sv-fc" points="572.8,100.7 572.3,84.6 583.6,88.7"/>
+<circle cx="585" cy="93.5" r="2.5" class="sv-fc"/>
+<text x="524" y="144" class="sv-t">I<tspan dy="4" font-size="12">p</tspan></text>
+</svg>
+<figcaption id="fig2cap" data-i18n="larmor.fig2"></figcaption>
+</figure>
     </div>
   </section>
 
@@ -512,7 +580,7 @@ const translations = {
     welcome: { title: '👋 خوش آمدید!', p2: 'امیر هستم. اینجا یادداشت‌ها، منابع آموزشی و ابزارهایی درباره فیزیک پلاسما و انرژی گداخت رو داریم. بخش مورد نظر خودتان را انتخاب کنید؛ در هر صفحه‌ای هم که باشید، از <strong>منوی همبرگری (☰)</strong> می‌توانید به بخش‌های دیگر بروید.' },
     books: { title: 'کتاب‌های مرجع', intro: 'کتاب‌ها و جزوه‌های پیشنهادی برای یادگیری فیزیک پلاسما، گداخت و مباحث پایه مهندسی. نسخه PDF بیشتر آن‌ها قابل دانلود است:' },
     home: { books: 'کتاب‌ها و جزوه‌های مرجع فیزیک پلاسما، گداخت و مهندسی، با امکان دانلود.', larmor: 'فرکانس و شعاع لارمور و نقش آن‌ها در محصورسازی پلاسما.', articles: 'یادداشت‌ها و مقالات علمی درباره پلاسما و گداخت.', education: 'کتاب‌ها، دوره‌ها، نرم‌افزارها، آموزش‌ها و شبیه‌ساز پروب لانگمویر.', about: 'آشنایی با من، علایق پژوهشی و تحصیلات.', contact: 'راه‌های ارتباط و همکاری علمی.' },
-    larmor: { title: 'لارمور چیست؟', p1: '<strong>فرکانس لارمور</strong> (Larmor Frequency) یکی از مفاهیم بنیادی در فیزیک پلاسما و فیزیک ذرات باردار است. این فرکانس به سرعت چرخش ذرات باردار (الکترون‌ها و یون‌ها) در اطراف خطوط میدان مغناطیسی اشاره دارد.', where: 'که در آن:', var1: 'فرکانس زاویه‌ای لارمور (رادیان بر ثانیه)', var2: 'بار الکتریکی ذره (کولن)', var3: 'شدت میدان مغناطیسی (تسلا)', var4: 'جرم ذره (کیلوگرم)', p2: '<strong>شعاع لارمور</strong> (Larmor Radius یا Gyroradius) شعاع دایره‌ای است که ذره باردار در میدان مغناطیسی طی می‌کند:', p3: 'این مفاهیم در طراحی توکامک‌ها و استلراتورها برای محصورسازی پلاسما بسیار حیاتی هستند. در رآکتورهای گداخت مانند ITER، میدان‌های مغناطیسی قوی برای نگه داشتن پلاسمای داغ (بیش از ۱۰۰ میلیون درجه) استفاده می‌شوند و فرکانس لارمور تعیین می‌کند که ذرات چقدر سریع دور خطوط میدان می‌چرخند.' },
+    larmor: { fig1: 'شکل ۱ – چرخش لارمور: در نمای بالا (تصویر چپ) میدان مغناطیسی B به سمت بیرون صفحه است؛ یون و الکترون در جهت‌های مخالف دور آن می‌چرخند و شعاع لارمور یون، چون جرم بیشتری دارد، بسیار بزرگ‌تر است (مقیاس رعایت نشده). در نمای کناری (تصویر راست) ذره هم‌زمان در طول خط میدان حرکت می‌کند و مسیرش مارپیچ می‌شود.', fig2: 'شکل ۲ – محصورسازی مغناطیسی: در تصویر چپ چنبره توکامک با پیچه‌های میدان توروئیدی و یک خط میدان B<sub>t</sub> دیده می‌شود. در تصویر راست مقطع قطبی پلاسماست؛ ذرات باردار دور خطوط میدان می‌چرخند و روی سطوح شار مغناطیسی تودرتو محصور می‌مانند (I<sub>p</sub> جریان پلاسما است).', title: 'لارمور چیست؟', p1: '<strong>فرکانس لارمور</strong> (Larmor Frequency) یکی از مفاهیم بنیادی در فیزیک پلاسما و فیزیک ذرات باردار است. این فرکانس به سرعت چرخش ذرات باردار (الکترون‌ها و یون‌ها) در اطراف خطوط میدان مغناطیسی اشاره دارد.', where: 'که در آن:', var1: 'فرکانس زاویه‌ای لارمور (رادیان بر ثانیه)', var2: 'بار الکتریکی ذره (کولن)', var3: 'شدت میدان مغناطیسی (تسلا)', var4: 'جرم ذره (کیلوگرم)', p2: '<strong>شعاع لارمور</strong> (Larmor Radius یا Gyroradius) شعاع دایره‌ای است که ذره باردار در میدان مغناطیسی طی می‌کند:', p3: 'این مفاهیم در طراحی توکامک‌ها و استلراتورها برای محصورسازی پلاسما بسیار حیاتی هستند. در رآکتورهای گداخت مانند ITER، میدان‌های مغناطیسی قوی برای نگه داشتن پلاسمای داغ (بیش از ۱۰۰ میلیون درجه) استفاده می‌شوند و فرکانس لارمور تعیین می‌کند که ذرات چقدر سریع دور خطوط میدان می‌چرخند.' },
     articles: { title: 'مقالات', intro: 'یادداشت‌ها و مقالات علمی من درباره فیزیک پلاسما و انرژی گداخت. برای مطالعه کامل، روی هر مقاله کلیک کنید:', readMore: 'مطالعه کامل ←', hasFile: '📎 فایل پیوست', download: '📥 دانلود PDF مقاله', dateLabel: '📅 تاریخ:' },
     education: { 
       title: 'آموزش', intro: 'منابع و ابزارهای پیشنهادی برای یادگیری فیزیک پلاسما و مهندسی گداخت:', 
@@ -572,7 +640,7 @@ const translations = {
     welcome: { title: '👋 Welcome!', p2: 'I\'m Amir. Here we have notes, learning resources and tools on plasma physics and fusion energy. Pick a section below; wherever you are on the site, the <strong>hamburger menu (☰)</strong> takes you to any other section.' },
     books: { title: 'Reference Books', intro: 'Recommended books and course notes for learning plasma physics, fusion and basic engineering topics. Most of them can be downloaded as PDF:' },
     home: { books: 'Reference books and course notes on plasma, fusion and engineering, with downloads.', larmor: 'The Larmor frequency and radius, and their role in plasma confinement.', articles: 'Notes and scientific articles on plasma and fusion.', education: 'Books, courses, software, tutorials and the Langmuir probe simulator.', about: 'About me, research interests and education.', contact: 'Ways to get in touch and collaborate.' },
-    larmor: { title: 'What is Larmor?', p1: 'The <strong>Larmor Frequency</strong> is one of the fundamental concepts in plasma physics and charged particle physics. It refers to the rate at which charged particles (electrons and ions) gyrate around magnetic field lines.', where: 'Where:', var1: 'Larmor angular frequency (rad/s)', var2: 'Electric charge of the particle (Coulombs)', var3: 'Magnetic field strength (Tesla)', var4: 'Mass of the particle (kg)', p2: 'The <strong>Larmor Radius</strong> (or Gyroradius) is the radius of the circular path a charged particle follows in a magnetic field:', p3: 'These concepts are crucial in the design of tokamaks and stellarators for plasma confinement. In fusion reactors like ITER, strong magnetic fields are used to contain hot plasma (over 100 million degrees), and the Larmor frequency determines how fast particles gyrate around the field lines.' },
+    larmor: { fig1: 'Figure 1 – Larmor gyration: in the top view (left) the magnetic field B points out of the page; ions and electrons circle it in opposite directions, and the heavier ion has a much larger Larmor radius (not to scale). In the side view (right) the particle also moves along the field line, so its path becomes a helix.', fig2: 'Figure 2 – Magnetic confinement: on the left, a tokamak torus with toroidal field coils and a field line B<sub>t</sub>. On the right, the poloidal cross-section of the plasma; charged particles gyrate around field lines and stay confined on nested magnetic flux surfaces (I<sub>p</sub> is the plasma current).', title: 'What is Larmor?', p1: 'The <strong>Larmor Frequency</strong> is one of the fundamental concepts in plasma physics and charged particle physics. It refers to the rate at which charged particles (electrons and ions) gyrate around magnetic field lines.', where: 'Where:', var1: 'Larmor angular frequency (rad/s)', var2: 'Electric charge of the particle (Coulombs)', var3: 'Magnetic field strength (Tesla)', var4: 'Mass of the particle (kg)', p2: 'The <strong>Larmor Radius</strong> (or Gyroradius) is the radius of the circular path a charged particle follows in a magnetic field:', p3: 'These concepts are crucial in the design of tokamaks and stellarators for plasma confinement. In fusion reactors like ITER, strong magnetic fields are used to contain hot plasma (over 100 million degrees), and the Larmor frequency determines how fast particles gyrate around the field lines.' },
     articles: { title: 'Articles', intro: 'My notes and scientific articles about plasma physics and fusion energy. Click on any article to read the full content:', readMore: 'Read more →', hasFile: '📎 Attachment', download: '📥 Download PDF', dateLabel: ' Date:' },
     education: { 
       title: 'Education', intro: 'Recommended resources and tools for learning plasma physics and fusion engineering:', 
@@ -709,6 +777,41 @@ articlesData.push(
 {"id": "taban-triple-probe-fa", "fa": {"title": "طراحی و ساخت پروب النگمویر سه تایی برای اندازه گیری پارامترهای پلاسمای توکامک تابان", "date": "۱۳۹۷", "excerpt": "این پژوهش طراحی و ساخت پروب لانگمویر سه‌تایی را برای اندازه‌گیری پارامترهای پلاسمای توکامک تابان بررسی می‌کند. آرایش سه‌پروبی می‌تواند برای اندازه‌گیری پارامترها بدون جاروب کامل ولتاژ به کار رود.", "content": "<p><strong>نویسندگان:</strong> رستمی‌فرد، داریوش؛ میرزایی، حمیدرضا؛ امراللبی، رضا؛ محسنی، ملیکا؛ کاظمی، مسلم؛ ایرجی، داوود؛ اسدندزاد، رضا؛ قاسمی، مریم</p><p><strong>سال انتشار:</strong> ۱۳۹۷</p><h3>معرفی کوتاه</h3><p>این پژوهش طراحی و ساخت پروب لانگمویر سه‌تایی را برای اندازه‌گیری پارامترهای پلاسمای توکامک تابان بررسی می‌کند. آرایش سه‌پروبی می‌تواند برای اندازه‌گیری پارامترها بدون جاروب کامل ولتاژ به کار رود.</p>", "file": {"name": "دانلود PDF مقاله", "url": "https://raw.githubusercontent.com/amirerfanbohlouli/larmor/main/triple-langmuir-taban.pdf"}}, "en": {"title": "Design and Construction of a Triple Langmuir Probe for Measuring Plasma Parameters in the TABAN Tokamak", "date": "۱۳۹۷", "excerpt": "This study addresses the design and construction of a triple Langmuir probe for measuring plasma parameters in the TABAN tokamak. A triple-probe arrangement can be used to infer plasma parameters without a full voltage sweep.", "content": "<p><strong>Authors:</strong> رستمی‌فرد، داریوش؛ میرزایی، حمیدرضا؛ امراللبی، رضا؛ محسنی، ملیکا؛ کاظمی، مسلم؛ ایرجی، داوود؛ اسدندزاد، رضا؛ قاسمی، مریم</p><p><strong>Publication:</strong> ۱۳۹۷</p><h3>Brief overview</h3><p>This study addresses the design and construction of a triple Langmuir probe for measuring plasma parameters in the TABAN tokamak. A triple-probe arrangement can be used to infer plasma parameters without a full voltage sweep.</p>", "file": {"name": "Download PDF", "url": "https://raw.githubusercontent.com/amirerfanbohlouli/larmor/main/triple-langmuir-taban.pdf"}}},
 {"id": "damavand-glow-fa", "fa": {"title": "طراحی و ساخت پروب لانگمویر برای تعیین پارامترهای تخلیه درخشان جهت آماده سازی محفظه خلا در توکامک دماوند", "date": "۱۴۰۰", "excerpt": "این مقاله طراحی و ساخت پروب لانگمویر را برای تعیین پارامترهای تخلیه درخشان در فرایند آماده‌سازی محفظه خلأ توکامک دماوند بررسی می‌کند.", "content": "<p><strong>نویسندگان:</strong> ف. صدیقی و همکاران (F. Sedighi et al.)</p><p><strong>سال انتشار:</strong> ۱۴۰۰</p><h3>معرفی کوتاه</h3><p>این مقاله طراحی و ساخت پروب لانگمویر را برای تعیین پارامترهای تخلیه درخشان در فرایند آماده‌سازی محفظه خلأ توکامک دماوند بررسی می‌کند.</p>", "file": {"name": "دانلود PDF مقاله", "url": "https://raw.githubusercontent.com/amirerfanbohlouli/larmor/main/langmuir-damavand-1400.pdf"}}, "en": {"title": "Design and Construction of a Langmuir Probe for Characterizing Glow Discharge Parameters during Vacuum Vessel Conditioning in the DAMAVAND Tokamak", "date": "۱۴۰۰", "excerpt": "This paper discusses the design and construction of a Langmuir probe to characterize glow-discharge parameters during vacuum-vessel conditioning in the DAMAVAND tokamak.", "content": "<p><strong>Authors:</strong> ف. صدیقی و همکاران (F. Sedighi et al.)</p><p><strong>Publication:</strong> ۱۴۰۰</p><h3>Brief overview</h3><p>This paper discusses the design and construction of a Langmuir probe to characterize glow-discharge parameters during vacuum-vessel conditioning in the DAMAVAND tokamak.</p>", "file": {"name": "Download PDF", "url": "https://raw.githubusercontent.com/amirerfanbohlouli/larmor/main/langmuir-damavand-1400.pdf"}}}
 );
+
+// ===== ARTICLE PDF DOWNLOADS (files live in the repository root; paths are relative to the site) =====
+const ARTICLE_FILES = {
+  "langmuir-probe-chen": "Langmuir Probe Diagnostics - F.F.Chen.pdf",
+  "400khz-fast-sweep": "A 400 kHz, fast-sweep Langmuir probe for measuring plasma fluctuations - G. Chiodini, C. Riccardi, M. Fontanesi - 1999.pdf",
+  "computerized-langmuir": "A computerized Langmuir probe system - I. S. Pilling, E. L. Bydder, D. A. Carnegie - 2003.pdf",
+  "fast-sweeping-circuit": "A Fast Langmuir Probe Sweeping Circuit - K. A. Milnes, K. W. Ehlers, K. N. Leung, M. D. Williams - 1979.pdf",
+  "fpga-langmuir": "A field programmable gate array based Langmuir probe system - C. Hickling, S. Hall, J. R. Harrison, R. Sharples, J. W. Bradley - 2024.pdf",
+  "computerized-rf-discharge": "Computerized Langmuir Probe Measurements in a Capacitively Coupled RF Discharge - M. El Shaer, A. S. Mohamed, A. Massoud, M. Mobasher, M. Wuttmann.pdf",
+  "iter-divertor-design-challenge": "Design and challenge for ITER Divertor Langmuir probe - L. NIE, W. ZHAO, et al. - (پیش‌چاپ کنفرانس  Conference Pre-print).pdf",
+  "dc-arc-jet-probe": "Design and Implementation of a Fast-Sweeping Langmuir Probe Diagnostic for DC Arc Jet Environments - Sebastian V. Colom, Magnus A. Haw, Jocelino Rodrigues - 2025.pdf",
+  "high-temp-single-probe": "Design, Fabrication, and Data Analysis of a High-Temperature Single Langmuir Probe - Jack Hollingsworth - 2016.pdf",
+  "digital-sweeping-board": "Digital Design for a Sweeping Langmuir Probe Board - Omar Morales - 2004.pdf",
+  "spokes-fast-sweeping": "Fast sweeping probe system for characterization of spokes in E × B discharges - V. Skoutnev, P. Doubral, E. Rodriguez, and Y. Raitses - 2018.pdf",
+  "digital-mirror-application": "First application of a digital mirror Langmuir probe for real-time plasma diagnosis - McCarthy, W.; Golfinopoulos, T.; Woller, K.B.; Vincent, C.; Kuang, A.; Labombard, B. - 2021.pdf",
+  "high-density-analysis": "Langmuir probe analysis for high density plasmas - Francis F. Chen - 2001.pdf",
+  "fast-sweep-weakly-ionized": "Measurements of Plasma Properties Using Fast Sweep Langmuir Probes in Unmagnetized Weakly Ionized Plasmas - O. Troll, L. Conde, E. Criado, J.M. Donoso, and G. Herdrich - 2010.pdf",
+  "iter-preliminary-design": "Preliminary Design of ITER Divertor Langmuir Probe System - Wei Zhao, Yali Wang, Yuzhong Jin, Li Zhao, Hongxia Zhou, Lin Nie, Guangwu Zhong, Chunjia Liu, Christopher Watts & James Paul Gun.pdf",
+  "east-bolometer": "Progress of the bolometer diagnostic system on EAST - Wen WEN, Yanmin DUAN, Shanshan PAN, Yan CHAO, Songtao MAO, Jing QIAN, Lingyi MENG, Panjun TANG and Shiyao LIN - 2024.pdf",
+  "robust-circuitry-fusion": "Robust Langmuir probe circuitry for fusion research - J. Boedo, G. Gunner, D. Gray, and R. Conn - 2001.pdf",
+  "single-langmuir-device": "Single Langmuir Probe Diagnostics Device - Angel González-Lizardo, Jairo Rondón, Felix A. Cuadrado-Rodríguez.pdf",
+  "standalone-microprocessor-driver": "Stand-alone microprocessor controlled fast sweep Langmuir probe driver - A. D. Cheetham, L. Davidson, J. Jakobsen, T. Lund, and J. P. Rayner - 1997.pdf",
+  "laser-plasma-probe-fa": "langmuir-laser-1393.pdf.pdf",
+  "iran-inertial-esi-fa": "langmuir-esi-system.pdf.pdf",
+  "taban-triple-probe-fa": "triple-langmuir-taban.pdf",
+  "damavand-glow-fa": "langmuir-damavand-1400.pdf"
+};
+articlesData.forEach(a => {
+  const fn = ARTICLE_FILES[a.id];
+  if (!fn) return;
+  const url = encodeURIComponent(fn);
+  a.fa.file = { name: 'دانلود PDF مقاله', url };
+  a.en.file = { name: 'Download PDF', url };
+});
+
 
 const tutorialsData = [
 {
@@ -876,10 +979,8 @@ function renderArticles() {
       <h3>${data.title}</h3>
       <div class="article-date">📅 ${data.date}</div>
       <p class="article-excerpt">${data.excerpt}</p>
-      <div class="article-footer">
-        <span class="read-more">${t.readMore}</span>
-        ${data.file ? `<a href="${data.file.url}" download class="card-download" onclick="event.stopPropagation()">${t.download}</a>` : ''}
-      </div>
+      <span class="read-more">${t.readMore}</span>
+      ${data.file ? `<span class="has-attachment">${t.hasFile}</span>` : ''}
     `;
     grid.appendChild(card);
   });
