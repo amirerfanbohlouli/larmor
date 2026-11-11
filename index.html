@@ -1682,6 +1682,44 @@ setLanguage(currentLang);
 showPage(location.hash.slice(1) || 'home', false);
 initVisitCounters();
 </script>
+  <script>
+// ردیابی دانلود فایل‌ها
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a[download]');
+  if (!link) return;
+  const fileName = link.getAttribute('download') || link.href.split('/').pop();
+  if (window.goatcounter && window.goatcounter.count) {
+    window.goatcounter.count({
+      path: 'download-file',
+      title: decodeURIComponent(fileName),
+      event: true
+    });
+  }
+});
+
+// ردیابی مدت زمان حضور
+(function() {
+  const startTime = Date.now();
+  let reported = false;
+  function reportTimeOnPage() {
+    if (reported) return;
+    const seconds = Math.round((Date.now() - startTime) / 1000);
+    if (seconds < 5) return;
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({
+        path: 'time-on-page',
+        title: seconds + ' seconds',
+        event: true
+      });
+      reported = true;
+    }
+  }
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') reportTimeOnPage();
+  });
+  window.addEventListener('beforeunload', reportTimeOnPage);
+})();
+</script>
   <script data-goatcounter="https://larmor.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 </body>
