@@ -812,6 +812,178 @@ articlesData.forEach(a => {
   a.en.file = { name: 'Download PDF', url };
 });
 
+// ===== NEW FILES FROM REPOSITORY =====
+const NEW_ARTICLE_FILES = {
+  'bib-langmuir-probe-lindqvist': 'A Bibliography of Langmuir Probe Theory and Space Applications - Per-Arne Lindqvist.pdf',
+  'fast-electron-tokamak-probe': 'A Problem in the Interpretation of Tokamak Langmuir Probes When a Fast Electron Component Is Present - P. C. Stangeby.pdf',
+  'intro-langmuir-conde': 'An Introduction to Langmuir Probe Diagnostics of Plasmas - Luis Conde.pdf',
+  'ir-t1-probe-circuit': 'Design and Fabrication of Langmuir Probe Circuit for Measurement of Plasma Edge Electron Temperature and Density in IR-T1 Tokamak - M. Ghorannevis et al.pdf',
+  'edge-plasma-diagnostics-stockel': 'Edge Plasma Diagnostics in Tokamaks - Jan Stöckel.pdf.pdf',
+  'stor-m-rmp-edge': 'Edge Plasma Properties of Ohmic Discharges with Resonant Magnetic Perturbations in the STOR-M Tokamak - Michael Hubeny.pdf',
+  'electric-probes-chen': 'Electric Probes - Francis F. Chen.pdf',
+  'ion-density-evaluation': 'Evaluation of Langmuir probe ion density measurement in weakly ionized discharges using plasma oscillation probes and microwave interferometry - John D. Evans et al.pdf',
+  'how-langmuir-probes-work': 'How Langmuir Probes Work - Noah Hershkowitz.pdf',
+  'probe-impact-turbulence': 'Impact of a Langmuir Probe on Turbulence Measurements in the Scrape-Off-Layer of Tokamaks - TOKAM-2D.pdf.pdf',
+  'stor-m-rfa-ion-temp': 'Ion Temperature Measurements in STOR-M Boundary Plasmas Using a Retarding Field Energy Analyzer - Damian Rohraff.pdf',
+  'langmuir-lab-manual': "Langmuir's Probe - Laboratory Manual.pdf",
+  'lecture-notes-langmuir-chen': 'Lecture Notes on Langmuir Probe Diagnostics - Francis F. Chen.pdf',
+  'zonal-flows-probe-array': 'Measurement of Zonal Flows in a Tokamak Using Langmuir Probe Array - G. S. Xu, B. N. Wan.pdf',
+  'rf-discharge-time-varying': 'Measurements of Time-Varying Plasma Potential, Temperature, and Density in a 13.56 MHz Radiofrequency Discharge - Jeffrey L. Wilson et al.pdf',
+  'diii-d-swing-probes': 'Measuring the Inboard Side Scrape-Off Layer of DIII-D Plasmas Using Swing-Probes - Cedric K. Tsui.pdf',
+  'plasma-fluid-langmuir-sheaths': 'Plasma Fluid Theory - 4.16 Langmuir Sheaths - Richard Fitzpatrick.pdf',
+  'plasma-processing-diagnostics-chen': 'Principles of Plasma Processing Part A7 - Plasma Diagnostics - F. F. Chen.pdf',
+  'text-magnetized-probe': 'Single Langmuir Probe Characteristic in a Magnetized Plasma at the TEXT Tokamak - Stefan Jachmich.pdf.pdf',
+  'fast-swept-array-fluctuations': 'Spatiotemporal temperature fluctuation measurements by means of a fast swept Langmuir probe array - M. Schubert et al.pdf',
+  'digital-mirror-fpga': 'The Digital Mirror Langmuir Probe FPGA Implementation of Real-Time Langmuir Probe Biasing - C. Vincent, W. McCarthy, T. Golfinopoulos, B. LaBombard, R. Sharples, J. Lovell, G. Naylor, S. H.PDF',
+  'electrostatic-probes-review': 'The Use of Electrostatic Probes for Plasma Diagnostics (A Review) - B. E. Cherrington.pdf',
+  'theory-application-korolov': 'Theory and Application of Langmuir Probes - I. Korolov.pdf.pdf',
+  'laframboise-theory': 'Theory of Spherical and Cylindrical Langmuir Probes in a Collisionless Plasma at Rest - James G. Laframboise.pdf',
+  'tokamak-electrical-probes': 'Tokamak plasma diagnosis by electrical probes.pdf',
+  'merlino-understanding-iv': 'Understanding Langmuir probe current-voltage characteristics - Robert L. Merlino.pdf'
+};
+
+const newArticles = [
+  {
+    id: 'bib-langmuir-probe-lindqvist',
+    fa: { title: 'کتاب‌شناسی نظریه پروب لانگمویر و کاربردهای فضایی', date: '—', excerpt: 'فهرست مرجعی از منابع نظریه پروب لانگمویر و کاربردهای آن در پلاسمای فضایی.', content: `<p><strong>نویسنده:</strong> Per-Arne Lindqvist</p><p>این سند یک کتاب‌شناسی جامع از منابع نظریه پروب لانگمویر و کاربردهای فضایی آن است و برای یافتن مراجع کلاسیک و پژوهشی این حوزه بسیار مفید است.</p>` },
+    en: { title: 'A Bibliography of Langmuir Probe Theory and Space Applications', date: 'n.d.', excerpt: 'A reference bibliography of Langmuir probe theory and its space-plasma applications.', content: `<p><strong>Author:</strong> Per-Arne Lindqvist</p><p>This document is a comprehensive bibliography of Langmuir probe theory and space applications, useful for locating classic and research references in the field.</p>` }
+  },
+  {
+    id: 'fast-electron-tokamak-probe',
+    fa: { title: 'مشکلی در تفسیر پروب لانگمویر توکامک در حضور مؤلفه الکترون سریع', date: '—', excerpt: 'اثر حضور الکترون‌های پرانرژی بر تفسیر منحنی جریان–ولتاژ پروب در توکامک.', content: `<p><strong>نویسنده:</strong> P. C. Stangeby</p><p>این مقاله به خطاها و پیچیدگی‌های تفسیر داده‌های پروب لانگمویر در توکامک هنگامی که یک مؤلفه الکترون سریع در پلاسما وجود دارد می‌پردازد.</p>` },
+    en: { title: 'A Problem in the Interpretation of Tokamak Langmuir Probes When a Fast Electron Component Is Present', date: 'n.d.', excerpt: 'How energetic electrons affect interpretation of tokamak Langmuir-probe I–V data.', content: `<p><strong>Author:</strong> P. C. Stangeby</p><p>This paper discusses the interpretation difficulties of tokamak Langmuir-probe data when a fast electron component is present in the plasma.</p>` }
+  },
+  {
+    id: 'intro-langmuir-conde',
+    fa: { title: 'مقدمه‌ای بر تشخیص پلاسما با پروب لانگمویر', date: '—', excerpt: 'درس‌نامه مقدماتی درباره اصول و کاربرد پروب لانگمویر.', content: `<p><strong>نویسنده:</strong> Luis Conde</p><p>این درس‌نامه مقدمه‌ای آموزشی بر اصول پروب لانگمویر، شکل منحنی I–V و استخراج پارامترهای پلاسما ارائه می‌کند.</p>` },
+    en: { title: 'An Introduction to Langmuir Probe Diagnostics of Plasmas', date: 'n.d.', excerpt: 'Introductory lecture notes on the principles and use of Langmuir probes.', content: `<p><strong>Author:</strong> Luis Conde</p><p>These lecture notes provide an educational introduction to Langmuir-probe principles, the I–V curve and extraction of plasma parameters.</p>` }
+  },
+  {
+    id: 'ir-t1-probe-circuit',
+    fa: { title: 'طراحی و ساخت مدار پروب لانگمویر برای اندازه‌گیری دما و چگالی الکترون لبه پلاسما در توکامک IR-T1', date: '—', excerpt: 'طراحی مدار پروب و اندازه‌گیری پارامترهای الکترونی لبه پلاسما در توکامک IR-T1.', content: `<p><strong>نویسندگان:</strong> M. Ghorannevis و همکاران</p><p>این مقاله طراحی و ساخت مدار پروب لانگمویر را برای اندازه‌گیری دمای الکترون و چگالی در ناحیه لبه پلاسمای توکامک IR-T1 گزارش می‌کند.</p>` },
+    en: { title: 'Design and Fabrication of Langmuir Probe Circuit for Measurement of Plasma Edge Electron Temperature and Density in IR-T1 Tokamak', date: 'n.d.', excerpt: 'Probe circuit design and edge electron-temperature/density measurements in the IR-T1 tokamak.', content: `<p><strong>Authors:</strong> M. Ghorannevis et al.</p><p>This paper reports the design and fabrication of a Langmuir-probe circuit for measuring electron temperature and density in the edge plasma of the IR-T1 tokamak.</p>` }
+  },
+  {
+    id: 'edge-plasma-diagnostics-stockel',
+    fa: { title: 'تشخیص پلاسمای لبه در توکامک‌ها', date: '—', excerpt: 'مروری بر روش‌های تشخیصی پلاسمای لبه و ناحیه اسکراپ‌آف در توکامک.', content: `<p><strong>نویسنده:</strong> Jan Stöckel</p><p>این اثر به روش‌های تشخیص پلاسمای لبه و ناحیه اسکراپ‌آف توکامک می‌پردازد و جایگاه پروب‌های الکترواستاتیکی را در این اندازه‌گیری‌ها نشان می‌دهد.</p>` },
+    en: { title: 'Edge Plasma Diagnostics in Tokamaks', date: 'n.d.', excerpt: 'An overview of diagnostics for tokamak edge and scrape-off-layer plasmas.', content: `<p><strong>Author:</strong> Jan Stöckel</p><p>This work discusses diagnostics of the tokamak edge and scrape-off-layer plasma, including the role of electrostatic probes in such measurements.</p>` }
+  },
+  {
+    id: 'stor-m-rmp-edge',
+    fa: { title: 'ویژگی‌های پلاسمای لبه در تخلیه‌های اهمی با اغتشاشات مغناطیسی تشدیدی در توکامک STOR-M', date: '—', excerpt: 'بررسی اثر اغتشاشات مغناطیسی تشدیدی (RMP) بر خواص پلاسمای لبه در STOR-M.', content: `<p><strong>نویسنده:</strong> Michael Hubeny</p><p>این پایان‌نامه/مقاله به تغییر خواص پلاسمای لبه در تخلیه‌های اهمی توکامک STOR-M هنگام اعمال اغتشاشات مغناطیسی تشدیدی می‌پردازد.</p>` },
+    en: { title: 'Edge Plasma Properties of Ohmic Discharges with Resonant Magnetic Perturbations in the STOR-M Tokamak', date: 'n.d.', excerpt: 'Effects of resonant magnetic perturbations on edge-plasma properties in STOR-M.', content: `<p><strong>Author:</strong> Michael Hubeny</p><p>This thesis/paper examines changes in edge-plasma properties of ohmic STOR-M discharges when resonant magnetic perturbations are applied.</p>` }
+  },
+  {
+    id: 'electric-probes-chen',
+    fa: { title: 'پروب‌های الکتریکی', date: '—', excerpt: 'مرور فرانسیس چن بر پروب‌های الکتریکی و اصول تشخیص پلاسما.', content: `<p><strong>نویسنده:</strong> Francis F. Chen</p><p>این متن مروری بر پروب‌های الکتریکی، مبانی نظری آن‌ها و کاربردشان در تشخیص پلاسما ارائه می‌کند.</p>` },
+    en: { title: 'Electric Probes', date: 'n.d.', excerpt: 'Francis Chen’s review of electric probes and plasma-diagnostic principles.', content: `<p><strong>Author:</strong> Francis F. Chen</p><p>This text reviews electric probes, their theoretical basis and their use in plasma diagnostics.</p>` }
+  },
+  {
+    id: 'ion-density-evaluation',
+    fa: { title: 'ارزیابی اندازه‌گیری چگالی یون با پروب لانگمویر در تخلیه‌های ضعیفاً یونیده', date: '—', excerpt: 'مقایسه دقت اندازه‌گیری چگالی یون با پروب لانگمویر و روش‌های پروب نوسان پلاسما و تداخل‌سنجی مایکروویو.', content: `<p><strong>نویسندگان:</strong> John D. Evans و همکاران</p><p>این مقاله دقت اندازه‌گیری چگالی یون با پروب لانگمویر را در تخلیه‌های ضعیفاً یونیده، با استفاده از پروب نوسان پلاسما و تداخل‌سنجی مایکروویو، ارزیابی می‌کند.</p>` },
+    en: { title: 'Evaluation of Langmuir Probe Ion Density Measurement in Weakly Ionized Discharges', date: 'n.d.', excerpt: 'Comparing Langmuir-probe ion-density measurements with plasma oscillation probes and microwave interferometry.', content: `<p><strong>Authors:</strong> John D. Evans et al.</p><p>This paper evaluates Langmuir-probe ion-density measurements in weakly ionized discharges using plasma oscillation probes and microwave interferometry as references.</p>` }
+  },
+  {
+    id: 'how-langmuir-probes-work',
+    fa: { title: 'پروب لانگمویر چگونه کار می‌کند؟', date: '—', excerpt: 'توضیح مفهومی سازوکار پروب لانگمویر و شکل‌گیری منحنی جریان–ولتاژ.', content: `<p><strong>نویسنده:</strong> Noah Hershkowitz</p><p>این متن به زبان ساده توضیح می‌دهد که پروب لانگمویر چگونه جریان الکترون و یون را جمع می‌کند و منحنی I–V چگونه شکل می‌گیرد.</p>` },
+    en: { title: 'How Langmuir Probes Work', date: 'n.d.', excerpt: 'A conceptual explanation of how Langmuir probes operate and how the I–V curve forms.', content: `<p><strong>Author:</strong> Noah Hershkowitz</p><p>This text explains in accessible terms how a Langmuir probe collects electron and ion currents and how the I–V characteristic is formed.</p>` }
+  },
+  {
+    id: 'probe-impact-turbulence',
+    fa: { title: 'اثر پروب لانگمویر بر اندازه‌گیری آشفتگی در لایه اسکراپ‌آف توکامک', date: '—', excerpt: 'مطالعه TOKAM-2D درباره اختلال ناشی از پروب در اندازه‌گیری آشفتگی لبه توکامک.', content: `<p><strong>منبع:</strong> TOKAM-2D</p><p>این مطالعه با شبیه‌سازی TOKAM-2D بررسی می‌کند که حضور پروب لانگمویر چگونه می‌تواند اندازه‌گیری آشفتگی در لایه اسکراپ‌آف توکامک را تحت تأثیر قرار دهد.</p>` },
+    en: { title: 'Impact of a Langmuir Probe on Turbulence Measurements in the Scrape-Off-Layer of Tokamaks', date: 'n.d.', excerpt: 'A TOKAM-2D study of probe-induced perturbation in scrape-off-layer turbulence measurements.', content: `<p><strong>Source:</strong> TOKAM-2D</p><p>This TOKAM-2D study examines how the presence of a Langmuir probe can affect turbulence measurements in the tokamak scrape-off layer.</p>` }
+  },
+  {
+    id: 'stor-m-rfa-ion-temp',
+    fa: { title: 'اندازه‌گیری دمای یون در پلاسمای مرزی STOR-M با تحلیل‌گر انرژی میدان کندکننده', date: '—', excerpt: 'استفاده از تحلیل‌گر انرژی میدان کندکننده (RFA) برای اندازه‌گیری دمای یون در پلاسمای مرزی STOR-M.', content: `<p><strong>نویسنده:</strong> Damian Rohraff</p><p>این اثر اندازه‌گیری دمای یون را در پلاسمای مرزی توکامک STOR-M با استفاده از تحلیل‌گر انرژی میدان کندکننده گزارش می‌کند.</p>` },
+    en: { title: 'Ion Temperature Measurements in STOR-M Boundary Plasmas Using a Retarding Field Energy Analyzer', date: 'n.d.', excerpt: 'Using a retarding field energy analyzer to measure ion temperature in STOR-M boundary plasmas.', content: `<p><strong>Author:</strong> Damian Rohraff</p><p>This work reports ion-temperature measurements in STOR-M boundary plasmas using a retarding field energy analyzer.</p>` }
+  },
+  {
+    id: 'langmuir-lab-manual',
+    fa: { title: 'پروب لانگمویر — راهنمای آزمایشگاه', date: '—', excerpt: 'راهنمای عملی انجام آزمایش پروب لانگمویر.', content: `<p>این راهنمای آزمایشگاهی، مراحل عملی راه‌اندازی پروب لانگمویر، برداشت منحنی I–V و تحلیل مقدماتی داده‌ها را توضیح می‌دهد.</p>` },
+    en: { title: "Langmuir's Probe — Laboratory Manual", date: 'n.d.', excerpt: 'A practical laboratory guide to Langmuir-probe experiments.', content: `<p>This laboratory manual describes the practical steps of setting up a Langmuir probe, acquiring an I–V curve and performing basic data analysis.</p>` }
+  },
+  {
+    id: 'lecture-notes-langmuir-chen',
+    fa: { title: 'درس‌نامه تشخیص با پروب لانگمویر', date: '—', excerpt: 'نسخه درس‌نامه فرانسیس چن درباره تشخیص پلاسما با پروب لانگمویر.', content: `<p><strong>نویسنده:</strong> Francis F. Chen</p><p>این درس‌نامه به اصول تشخیص با پروب لانگمویر، نظریه‌های جمع‌آوری یون و الکترون و روش‌های تحلیل داده می‌پردازد.</p>` },
+    en: { title: 'Lecture Notes on Langmuir Probe Diagnostics', date: 'n.d.', excerpt: 'Francis Chen’s lecture notes on Langmuir-probe plasma diagnostics.', content: `<p><strong>Author:</strong> Francis F. Chen</p><p>These lecture notes cover the principles of Langmuir-probe diagnostics, ion and electron collection theory, and data-analysis methods.</p>` }
+  },
+  {
+    id: 'zonal-flows-probe-array',
+    fa: { title: 'اندازه‌گیری جریان‌های زونال در توکامک با آرایه پروب لانگمویر', date: '—', excerpt: 'استفاده از آرایه پروب لانگمویر برای شناسایی جریان‌های زونال در توکامک.', content: `<p><strong>نویسندگان:</strong> G. S. Xu و B. N. Wan</p><p>این مقاله روشی برای اندازه‌گیری جریان‌های زونال در توکامک با استفاده از آرایه پروب لانگمویر ارائه می‌کند.</p>` },
+    en: { title: 'Measurement of Zonal Flows in a Tokamak Using Langmuir Probe Array', date: 'n.d.', excerpt: 'Using a Langmuir-probe array to measure zonal flows in a tokamak.', content: `<p><strong>Authors:</strong> G. S. Xu and B. N. Wan</p><p>This paper presents a method for measuring zonal flows in a tokamak using a Langmuir-probe array.</p>` }
+  },
+  {
+    id: 'rf-discharge-time-varying',
+    fa: { title: 'اندازه‌گیری پتانسیل، دما و چگالی متغیر با زمان پلاسما در تخلیه RF 13.56 مگاهرتز', date: '—', excerpt: 'اندازه‌گیری زمانی پارامترهای پلاسما در تخلیه فرکانس‌رادیویی ۱۳.۵۶ مگاهرتز.', content: `<p><strong>نویسندگان:</strong> Jeffrey L. Wilson و همکاران</p><p>این مقاله اندازه‌گیری پتانسیل، دما و چگالی پلاسما را به‌صورت متغیر با زمان در یک تخلیه RF با فرکانس ۱۳.۵۶ مگاهرتز گزارش می‌کند.</p>` },
+    en: { title: 'Measurements of Time-Varying Plasma Potential, Temperature, and Density in a 13.56 MHz RF Discharge', date: 'n.d.', excerpt: 'Time-resolved plasma potential, temperature and density in a 13.56 MHz RF discharge.', content: `<p><strong>Authors:</strong> Jeffrey L. Wilson et al.</p><p>This paper reports time-varying measurements of plasma potential, temperature and density in a 13.56 MHz radio-frequency discharge.</p>` }
+  },
+  {
+    id: 'diii-d-swing-probes',
+    fa: { title: 'اندازه‌گیری لایه اسکراپ‌آف سمت داخلی پلاسمای DIII-D با پروب‌های چرخشی', date: '—', excerpt: 'پروب‌های چرخشی برای اندازه‌گیری لایه اسکراپ‌آف سمت داخلی در توکامک DIII-D.', content: `<p><strong>نویسنده:</strong> Cedric K. Tsui</p><p>این اثر استفاده از پروب‌های چرخشی (swing probes) را برای اندازه‌گیری لایه اسکراپ‌آف سمت داخلی پلاسمای DIII-D بررسی می‌کند.</p>` },
+    en: { title: 'Measuring the Inboard Side Scrape-Off Layer of DIII-D Plasmas Using Swing-Probes', date: 'n.d.', excerpt: 'Swing probes for inboard scrape-off-layer measurements in DIII-D.', content: `<p><strong>Author:</strong> Cedric K. Tsui</p><p>This work investigates the use of swing probes to measure the inboard scrape-off layer of DIII-D plasmas.</p>` }
+  },
+  {
+    id: 'plasma-fluid-langmuir-sheaths',
+    fa: { title: 'نظریه سیال پلاسما — غلاف‌های لانگمویر', date: '—', excerpt: 'فصل ۴.۱۶ درباره غلاف‌های لانگمویر در چارچوب نظریه سیال پلاسما.', content: `<p><strong>نویسنده:</strong> Richard Fitzpatrick</p><p>این بخش از درس‌نامه نظریه سیال پلاسما به غلاف‌های لانگمویر و شرایط شکل‌گیری آن‌ها می‌پردازد.</p>` },
+    en: { title: 'Plasma Fluid Theory — 4.16 Langmuir Sheaths', date: 'n.d.', excerpt: 'Section 4.16 on Langmuir sheaths within plasma fluid theory.', content: `<p><strong>Author:</strong> Richard Fitzpatrick</p><p>This section of plasma fluid theory lecture notes discusses Langmuir sheaths and the conditions under which they form.</p>` }
+  },
+  {
+    id: 'plasma-processing-diagnostics-chen',
+    fa: { title: 'اصول فرآوری پلاسما — بخش A7: تشخیص پلاسما', date: '—', excerpt: 'بخشی از کتاب فرآوری پلاسما درباره روش‌های تشخیص پلاسما.', content: `<p><strong>نویسنده:</strong> Francis F. Chen</p><p>این بخش به روش‌های تشخیص پلاسما در فرآوری پلاسما می‌پردازد و مبانی اندازه‌گیری پارامترهای پلاسما را مرور می‌کند.</p>` },
+    en: { title: 'Principles of Plasma Processing Part A7 — Plasma Diagnostics', date: 'n.d.', excerpt: 'A section of Principles of Plasma Processing on plasma diagnostics.', content: `<p><strong>Author:</strong> Francis F. Chen</p><p>This section reviews plasma diagnostics in plasma processing and the fundamentals of measuring plasma parameters.</p>` }
+  },
+  {
+    id: 'text-magnetized-probe',
+    fa: { title: 'مشخصه پروب لانگمویر تکی در پلاسمای مغناطیده توکامک TEXT', date: '—', excerpt: 'اثر میدان مغناطیسی بر مشخصه جریان–ولتاژ پروب در توکامک TEXT.', content: `<p><strong>نویسنده:</strong> Stefan Jachmich</p><p>این مقاله مشخصه پروب لانگمویر تکی را در پلاسمای مغناطیده توکامک TEXT بررسی می‌کند.</p>` },
+    en: { title: 'Single Langmuir Probe Characteristic in a Magnetized Plasma at the TEXT Tokamak', date: 'n.d.', excerpt: 'Magnetic-field effects on single-probe I–V characteristics in the TEXT tokamak.', content: `<p><strong>Author:</strong> Stefan Jachmich</p><p>This paper examines the single Langmuir-probe characteristic in the magnetized plasma of the TEXT tokamak.</p>` }
+  },
+  {
+    id: 'fast-swept-array-fluctuations',
+    fa: { title: 'اندازه‌گیری نوسانات دمایی فضایی-زمانی با آرایه پروب لانگمویر با جاروب سریع', date: '—', excerpt: 'آرایه پروب جاروب سریع برای اندازه‌گیری نوسانات دما در پلاسما.', content: `<p><strong>نویسندگان:</strong> M. Schubert و همکاران</p><p>این مقاله از آرایه پروب لانگمویر با جاروب سریع برای اندازه‌گیری نوسانات دمایی فضایی-زمانی استفاده می‌کند.</p>` },
+    en: { title: 'Spatiotemporal Temperature Fluctuation Measurements by Means of a Fast Swept Langmuir Probe Array', date: 'n.d.', excerpt: 'A fast-swept Langmuir-probe array for spatiotemporal temperature-fluctuation measurements.', content: `<p><strong>Authors:</strong> M. Schubert et al.</p><p>This paper uses a fast-swept Langmuir-probe array to measure spatiotemporal temperature fluctuations.</p>` }
+  },
+  {
+    id: 'digital-mirror-fpga',
+    fa: { title: 'پیاده‌سازی FPGA پروب لانگمویر آینه دیجیتال برای بایاس بلادرنگ', date: '—', excerpt: 'پیاده‌سازی سخت‌افزاری بایاس بلادرنگ پروب لانگمویر آینه دیجیتال با FPGA.', content: `<p><strong>نویسندگان:</strong> C. Vincent, W. McCarthy, T. Golfinopoulos و همکاران</p><p>این مقاله پیاده‌سازی FPGA پروب لانگمویر آینه دیجیتال را برای بایاس بلادرنگ پروب توصیف می‌کند.</p>` },
+    en: { title: 'The Digital Mirror Langmuir Probe: FPGA Implementation of Real-Time Langmuir Probe Biasing', date: 'n.d.', excerpt: 'An FPGA implementation of real-time biasing for the digital mirror Langmuir probe.', content: `<p><strong>Authors:</strong> C. Vincent, W. McCarthy, T. Golfinopoulos et al.</p><p>This paper describes an FPGA implementation of the digital mirror Langmuir probe for real-time probe biasing.</p>` }
+  },
+  {
+    id: 'electrostatic-probes-review',
+    fa: { title: 'کاربرد پروب‌های الکترواستاتیکی در تشخیص پلاسما (مرور)', date: '—', excerpt: 'مرور کلاسیک چرینگتون بر پروب‌های الکترواستاتیکی و کاربرد آن‌ها در تشخیص پلاسما.', content: `<p><strong>نویسنده:</strong> B. E. Cherrington</p><p>این مقاله مروری کلاسیک بر پروب‌های الکترواستاتیکی و کاربرد آن‌ها در تشخیص پلاسما ارائه می‌کند.</p>` },
+    en: { title: 'The Use of Electrostatic Probes for Plasma Diagnostics (A Review)', date: 'n.d.', excerpt: 'Cherrington’s classic review of electrostatic probes for plasma diagnostics.', content: `<p><strong>Author:</strong> B. E. Cherrington</p><p>This classic review discusses electrostatic probes and their use in plasma diagnostics.</p>` }
+  },
+  {
+    id: 'theory-application-korolov',
+    fa: { title: 'نظریه و کاربرد پروب‌های لانگمویر', date: '—', excerpt: 'مروری بر نظریه و کاربرد پروب‌های لانگمویر.', content: `<p><strong>نویسنده:</strong> I. Korolov</p><p>این اثر نظریه و کاربرد پروب‌های لانگمویر را مرور می‌کند و برای ورود به مباحث تحلیل داده مفید است.</p>` },
+    en: { title: 'Theory and Application of Langmuir Probes', date: 'n.d.', excerpt: 'A review of the theory and application of Langmuir probes.', content: `<p><strong>Author:</strong> I. Korolov</p><p>This work reviews the theory and application of Langmuir probes and is useful as an entry point to data analysis.</p>` }
+  },
+  {
+    id: 'laframboise-theory',
+    fa: { title: 'نظریه پروب‌های لانگمویر کروی و استوانه‌ای در پلاسمای بدون برخورد', date: '—', excerpt: 'اثر کلاسیک لافرامبویز درباره نظریه پروب‌های کروی و استوانه‌ای.', content: `<p><strong>نویسنده:</strong> James G. Laframboise</p><p>این اثر کلاسیک به نظریه پروب‌های لانگمویر کروی و استوانه‌ای در یک پلاسمای بدون برخورد و در حال سکون می‌پردازد.</p>` },
+    en: { title: 'Theory of Spherical and Cylindrical Langmuir Probes in a Collisionless Plasma at Rest', date: 'n.d.', excerpt: 'Laframboise’s classic theory of spherical and cylindrical Langmuir probes.', content: `<p><strong>Author:</strong> James G. Laframboise</p><p>This classic work develops the theory of spherical and cylindrical Langmuir probes in a collisionless plasma at rest.</p>` }
+  },
+  {
+    id: 'tokamak-electrical-probes',
+    fa: { title: 'تشخیص پلاسمای توکامک با پروب‌های الکتریکی', date: '—', excerpt: 'مروری بر تشخیص الکتریکی پلاسمای توکامک با پروب‌ها.', content: `<p>این مقاله مروری بر تشخیص پلاسمای توکامک با پروب‌های الکتریکی و چالش‌های آن ارائه می‌کند.</p>` },
+    en: { title: 'Tokamak Plasma Diagnosis by Electrical Probes', date: 'n.d.', excerpt: 'A review of tokamak plasma diagnosis using electrical probes.', content: `<p>This paper reviews tokamak plasma diagnosis with electrical probes and the associated challenges.</p>` }
+  },
+  {
+    id: 'merlino-understanding-iv',
+    fa: { title: 'درک مشخصه جریان–ولتاژ پروب لانگمویر', date: '—', excerpt: 'توضیح آموزشی منحنی جریان–ولتاژ پروب لانگمویر و نحوه استخراج پارامترها.', content: `<p><strong>نویسنده:</strong> Robert L. Merlino</p><p>این مقاله به‌صورت آموزشی مشخصه جریان–ولتاژ پروب لانگمویر را توضیح می‌دهد و نشان می‌دهد چگونه پارامترهای پلاسما از آن استخراج می‌شوند.</p>` },
+    en: { title: 'Understanding Langmuir Probe Current–Voltage Characteristics', date: 'n.d.', excerpt: 'An educational explanation of Langmuir-probe I–V characteristics and parameter extraction.', content: `<p><strong>Author:</strong> Robert L. Merlino</p><p>This paper gives an educational explanation of the Langmuir-probe current–voltage characteristic and how plasma parameters are extracted from it.</p>` }
+  }
+];
+
+newArticles.forEach(a => {
+  const fn = NEW_ARTICLE_FILES[a.id];
+  if (!fn) return;
+  const url = encodeURIComponent(fn);
+  a.fa.file = { name: 'دانلود PDF مقاله', url };
+  a.en.file = { name: 'Download PDF', url };
+});
+articlesData.push(...newArticles);
+
 
 const tutorialsData = [
 {
@@ -876,6 +1048,9 @@ const booksData = [
   { cat: 'foundations', lang: 'en', title: 'Quantum Mechanics: A First Course for Chemistry and Physics Students', file: 'Quantum Mechanics A First Course for Chemistry and Physics Students - Alireza Malekfar.pdf', meta: by('Alireza Malekfar'), desc: { fa: 'درس اول مکانیک کوانتومی برای دانشجویان شیمی و فیزیک.', en: 'A first course in quantum mechanics for chemistry and physics students.' } },
   { cat: 'foundations', lang: 'fa', title: 'مبانی فیزیک (جلد دوم)', orig: 'Fundamentals of Physics', meta: { fa: 'نوشته دیوید هالیدی، رابرت رزنیک و جیرل واکر', en: 'By David Halliday, Robert Resnick and Jearl Walker' }, desc: { fa: 'فیزیک عمومی دانشگاهی؛ جلد دوم الکتریسیته و مغناطیس، پایه فیزیک پلاسما، را پوشش می‌دهد.', en: 'University general physics; Volume 2 covers electricity and magnetism, the base of plasma physics.' } },
   { cat: 'foundations', lang: 'en', title: 'Fundamentals of Microelectronics (Preview Edition)', file: 'Fundamentals of Microelectronics (Preview Edition) - Behzad Razavi.pdf', meta: by('Behzad Razavi'), desc: { fa: 'مبانی الکترونیک: دیود، ترانزیستور، تقویت‌کننده‌ها و بازخورد؛ مفید برای طراحی مدارهای اندازه‌گیری.', en: 'Electronics fundamentals: diodes, transistors, amplifiers and feedback; useful for designing measurement circuits.' } },
+  { cat: 'fusion', lang: 'en', title: 'The Plasma Boundary of Magnetic Fusion Devices', file: 'The Plasma Boundary of Magnetic Fusion Devices - Peter C. Stangeby.pdf', meta: by('Peter C. Stangeby'), desc: { fa: 'مرجع جامع پلاسمای مرزی و لایه اسکراپ‌آف در دستگاه‌های گداخت مغناطیسی.', en: 'A comprehensive reference on boundary plasma and the scrape-off layer in magnetic fusion devices.' } },
+  { cat: 'foundations', lang: 'en', title: 'Lecture Notes on Kinetic Theory and Statistical Physics', file: 'Lecture Notes on Kinetic Theory and Statistical Physics - Alexander A. Schekochihin.pdf', meta: by('Alexander A. Schekochihin'), desc: { fa: 'درس‌نامه نظریه جنبشی و فیزیک آماری، مفید برای پایه‌های جنبشی پلاسما.', en: 'Lecture notes on kinetic theory and statistical physics, useful for the kinetic foundations of plasma physics.' } },
+  { cat: 'fusion', lang: 'en', title: 'Tokamaks — 10.9 Langmuir Probes', file: 'Tokamaks - 10.9 Langmuir Probes - John Wesson.pdf', meta: by('John Wesson'), desc: { fa: 'بخش ۱۰.۹ کتاب توکامک‌ها درباره پروب‌های لانگمویر و کاربرد آن‌ها در توکامک.', en: 'Section 10.9 of Tokamaks on Langmuir probes and their use in tokamaks.' } },
 ];
 
 const BOOK_CATS = [['plasma', '⚛️'], ['fusion', '🔥'], ['diagnostics', '📡'], ['industrial', '🏭'], ['foundations', '📐']];
